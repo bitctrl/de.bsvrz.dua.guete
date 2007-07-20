@@ -26,7 +26,6 @@
 
 package de.bsvrz.dua.guete.vorschriften;
 
-import de.bsvrz.dua.guete.IGuete;
 
 /**
  * Implementierung des Verfahrens der Standard-Güteberechnung
@@ -40,6 +39,7 @@ implements IGuete{
 	
 	/**
 	 * {@inheritDoc}.<br>
+	 * 
 	 * Die einzelnen Werte werden hier additiv miteinander verknüpft
 	 */
 	public final double s(final double... quellGueten) {
@@ -59,6 +59,7 @@ implements IGuete{
 	
 	/**
 	 * {@inheritDoc}.<br>
+	 * 
 	 * Die einzelnen Werte werden hier additiv miteinander verknüpft
 	 */
 	public final double d(final double... quellGueten){
@@ -67,7 +68,7 @@ implements IGuete{
 
 	
 	/**
-	 * {@inheritDoc}.
+	 * {@inheritDoc}
 	 */
 	public final double e(final double quellGuete, final double exponent) {
 		return Math.pow(quellGuete, exponent);
@@ -76,6 +77,7 @@ implements IGuete{
 	
 	/**
 	 * {@inheritDoc}.<br>
+	 * 
 	 * Die einzelnen Werte werden hier multiplikativ miteinander verknüpft
 	 **/
 	public final double p(final double... quellGueten) {
@@ -93,6 +95,7 @@ implements IGuete{
 
 	/**
 	 * {@inheritDoc}.<br>
+	 * 
 	 * Die einzelnen Werte werden hier multiplikativ miteinander verknüpft
 	 */
 	public final double q(final double... quellGueten) {

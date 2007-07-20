@@ -7,3 +7,5 @@ Bundle-Localization: plugin
 Bundle-Vendor: BitCtrl Systems GmbH
 Require-Bundle: de.bitctrl.sys.funclib,
  de.bitctrl.dav.daf
+Export-Package: de.bsvrz.dua.guete,
+ de.bsvrz.dua.guete.vorschriften

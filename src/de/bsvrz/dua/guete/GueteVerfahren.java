@@ -29,7 +29,7 @@ package de.bsvrz.dua.guete;
 import java.util.HashMap;
 import java.util.Map;
 
-import stauma.dav.clientside.Data;
+import de.bsvrz.dua.guete.vorschriften.IGuete;
 import de.bsvrz.dua.guete.vorschriften.Standard;
 import de.bsvrz.sys.funclib.bitctrl.daf.AbstractDavZustand;
 
@@ -44,6 +44,11 @@ public class GueteVerfahren
 extends AbstractDavZustand{
 	
 	/**
+	 * Standardwert für die Guete
+	 */
+	private static final double STANDARD_GUETE = 1.0;
+	
+	/**
 	 * Der Wertebereich dieses DAV-Enumerationstypen
 	 */
 	private static Map<Integer, GueteVerfahren> WERTE_BEREICH = 
@@ -55,7 +60,7 @@ extends AbstractDavZustand{
 	public static final GueteVerfahren STANDARD = new GueteVerfahren("Standard", 0, new Standard()); //$NON-NLS-1$
 	
 	/**
-	 * Die zur Anwendung kommende Berechnungsvorschrift
+	 * die angewendete Berechnungsvorschrift
 	 */
 	private IGuete berechnungsVorschrift = null;
 	
@@ -92,7 +97,7 @@ extends AbstractDavZustand{
 		return WERTE_BEREICH.get(code);
 	}
 
-
+	
 	/**
 	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
 	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen diese
@@ -105,13 +110,14 @@ extends AbstractDavZustand{
 	 * @throws GueteException wenn die Verfahren zur Berechnung der Güte innerhalb der
 	 * übergebenen Datensätze nicht identisch ist
 	 */
-	public static double getPVonData(final Data... quellGueten)
+	public static GWert produkt(final GWert... quellGueten)
 	throws GueteException{
-		double ergebnis = 1.0;
+		GWert ergebnis = new GWert(STANDARD_GUETE, STANDARD);
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = werteMenge.getVerfahren().getBerechnungsVorschrift().p(werteMenge.getIndezes());
+			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().p(werteMenge.getIndezes()),
+							     werteMenge.getVerfahren());
 		}
 		
 		return ergebnis;
@@ -130,16 +136,17 @@ extends AbstractDavZustand{
 	 * @throws GueteException wenn die Verfahren zur Berechnung der Güte innerhalb der
 	 * übergebenen Datensätze nicht identisch ist
 	 */
-	public static double getQVonData(final Data... quellGueten)
+	public static GWert quotient(final GWert... quellGueten)
 	throws GueteException{
-		double ergebnis = 1.0;
+		GWert ergebnis = new GWert(STANDARD_GUETE, STANDARD);
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = werteMenge.getVerfahren().getBerechnungsVorschrift().q(werteMenge.getIndezes());
+			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().q(werteMenge.getIndezes()),
+							     werteMenge.getVerfahren());
 		}
 		
-		return ergebnis;		
+		return ergebnis;
 	}
 	
 
@@ -155,13 +162,14 @@ extends AbstractDavZustand{
  	 * @throws GueteException wenn die Verfahren zur Berechnung der Güte innerhalb der
 	 * übergebenen Datensätze nicht identisch ist
 	 */
-	public double getSVonData(final Data... quellGueten)
+	public static GWert summe(final GWert... quellGueten)
 	throws GueteException{
-		double ergebnis = 1.0;
+		GWert ergebnis = new GWert(STANDARD_GUETE, STANDARD);
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = werteMenge.getVerfahren().getBerechnungsVorschrift().s(werteMenge.getIndezes());
+			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().s(werteMenge.getIndezes()),
+							     werteMenge.getVerfahren());
 		}
 		
 		return ergebnis;
@@ -180,13 +188,14 @@ extends AbstractDavZustand{
  	 * @throws GueteException wenn die Verfahren zur Berechnung der Güte innerhalb der
 	 * übergebenen Datensätze nicht identisch ist
 	 */
-	public double getDVonData(final Data... quellGueten)
+	public static GWert differenz(final GWert... quellGueten)
 	throws GueteException{
-		double ergebnis = 1.0;
+		GWert ergebnis = new GWert(STANDARD_GUETE, STANDARD);
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = werteMenge.getVerfahren().getBerechnungsVorschrift().d(werteMenge.getIndezes());
+			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().d(werteMenge.getIndezes()),
+							     werteMenge.getVerfahren());
 		}
 		
 		return ergebnis;
@@ -201,13 +210,12 @@ extends AbstractDavZustand{
 	 * @param quellGueten der Güte-Datensatz
 	 * @param exponent der Exponent
 	 * @return die Gesamt-Güte
+	 * @throws GueteException falls ungueltige Werte uebergeben worden sind
 	 */
-	public double getEVonData(final Data quellGuete, final double exponent){
-		double index = quellGuete.getScaledValue("Index").doubleValue(); //$NON-NLS-1$
-		GueteVerfahren verfahren = GueteVerfahren.getZustand(
-				quellGuete.getUnscaledValue("Verfahren").intValue()); //$NON-NLS-1$
-		
-		return verfahren.getBerechnungsVorschrift().e(index, exponent);
+	public static GWert exp(final GWert quellGuete, final double exponent)
+	throws GueteException{
+		return new GWert(quellGuete.getVerfahren().getBerechnungsVorschrift().e(quellGuete.getIndex(), exponent), 
+						 quellGuete.getVerfahren());
 	}
-	
+
 }

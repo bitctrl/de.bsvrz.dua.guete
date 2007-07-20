@@ -28,11 +28,9 @@ package de.bsvrz.dua.guete;
 
 import java.util.TreeSet;
 
-import stauma.dav.clientside.Data;
-
 /**
  * Stellt eine Menge von Guete-Indezes zusammen mit ihrem
- * Berechnungs-Verfahren zur Verfügung 
+ * Berechnungs-Verfahren (konsistent) zur Verfügung 
  * 
  * @author BitCtrl Systems GmbH, Thierfelder
  *
@@ -58,14 +56,14 @@ public class WerteMenge {
 	 * @throws GueteException wenn die uebergebenen Datensaetze nicht alle dasselbe
 	 * Berechnungs-Verfahren implementieren
 	 */
-	public WerteMenge(Data... datenSaetze)
+	public WerteMenge(GWert... datenSaetze)
 	throws GueteException{
 		TreeSet<GueteVerfahren> alleVerfahren = new TreeSet<GueteVerfahren>();
 		
 		this.indezes = new double[datenSaetze.length];
 		for(int i = 0; i<indezes.length; i++){
-			alleVerfahren.add(GueteVerfahren.getZustand(datenSaetze[i].getUnscaledValue("Verfahren").intValue())); //$NON-NLS-1$
-			this.indezes[i] = datenSaetze[i].getScaledValue("Index").doubleValue(); //$NON-NLS-1$
+			alleVerfahren.add(datenSaetze[i].getVerfahren());
+			this.indezes[i] = datenSaetze[i].getIndex();
 			if(alleVerfahren.size() > 1){
 				throw new GueteException("Die uebergebenen Datensaetze verlangen" + //$NON-NLS-1$
 						" unterschiedliche Guete-Berechnungsverfahren"); //$NON-NLS-1$

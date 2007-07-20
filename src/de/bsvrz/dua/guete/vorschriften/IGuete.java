@@ -24,7 +24,7 @@
  * mailto: info@bitctrl.de
  */
 
-package de.bsvrz.dua.guete;
+package de.bsvrz.dua.guete.vorschriften;
 
 
 /**

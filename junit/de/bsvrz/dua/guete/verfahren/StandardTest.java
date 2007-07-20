@@ -31,7 +31,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.bsvrz.dua.guete.IGuete;
+import de.bsvrz.dua.guete.vorschriften.IGuete;
 import de.bsvrz.dua.guete.vorschriften.Standard;
 
 
