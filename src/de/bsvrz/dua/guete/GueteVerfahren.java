@@ -116,7 +116,7 @@ extends AbstractDavZustand{
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().p(werteMenge.getIndezes()),
+			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().p(werteMenge.getIndizes()),
 							     werteMenge.getVerfahren());
 		}
 		
@@ -142,7 +142,7 @@ extends AbstractDavZustand{
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().q(werteMenge.getIndezes()),
+			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().q(werteMenge.getIndizes()),
 							     werteMenge.getVerfahren());
 		}
 		
@@ -168,7 +168,7 @@ extends AbstractDavZustand{
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().s(werteMenge.getIndezes()),
+			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().s(werteMenge.getIndizes()),
 							     werteMenge.getVerfahren());
 		}
 		
@@ -194,7 +194,7 @@ extends AbstractDavZustand{
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().d(werteMenge.getIndezes()),
+			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().d(werteMenge.getIndizes()),
 							     werteMenge.getVerfahren());
 		}
 		

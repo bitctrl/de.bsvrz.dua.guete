@@ -41,7 +41,7 @@ public interface IGuete {
 	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen diese
 	 * Güte-Indizes gehören mit dem Operator "<code>*</code>" verknüpft worden sind.
 	 * 
-	 * @param quellGueten die Güte-Indezes aus denen die Gesamtgüte berechnet werden
+	 * @param quellGueten die Güte-Indizes aus denen die Gesamtgüte berechnet werden
 	 * soll
 	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
 	 * übergeben wurde 
@@ -53,7 +53,7 @@ public interface IGuete {
 	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen diese
 	 * Güte-Indizes gehören mit dem Operator "<code>/</code>" verknüpft worden sind.
 	 * 
-	 * @param quellGueten die Güte-Indezes aus denen die Gesamtgüte berechnet werden
+	 * @param quellGueten die Güte-Indizes aus denen die Gesamtgüte berechnet werden
 	 * soll
 	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
 	 * übergeben wurde  
@@ -65,7 +65,7 @@ public interface IGuete {
 	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen diese
 	 * Güte-Indizes gehören mit dem Operator "<code>+</code>" verknüpft worden sind.
 	 * 
-	 * @param quellGueten die Güte-Indezes aus denen die Gesamt-Güte berechnet werden
+	 * @param quellGueten die Güte-Indizes aus denen die Gesamt-Güte berechnet werden
 	 * soll
 	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
 	 * übergeben wurde
@@ -77,7 +77,7 @@ public interface IGuete {
 	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen diese
 	 * Güte-Indizes gehören mit dem Operator "<code>-</code>" verknüpft worden sind.
 	 * 
-	 * @param quellGueten die Güte-Indezes aus denen die Gesamt-Güte berechnet werden
+	 * @param quellGueten die Güte-Indizes aus denen die Gesamt-Güte berechnet werden
 	 * soll
 	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
 	 * übergeben wurde

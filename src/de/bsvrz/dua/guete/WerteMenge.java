@@ -29,7 +29,7 @@ package de.bsvrz.dua.guete;
 import java.util.TreeSet;
 
 /**
- * Stellt eine Menge von Guete-Indezes zusammen mit ihrem
+ * Stellt eine Menge von Guete-Indizes zusammen mit ihrem
  * Berechnungs-Verfahren (konsistent) zur Verfügung 
  * 
  * @author BitCtrl Systems GmbH, Thierfelder
@@ -43,9 +43,9 @@ public class WerteMenge {
 	private GueteVerfahren verfahren = null;
 	
 	/**
-	 * die Guete-Indezes
+	 * die Guete-Indizes
 	 */
-	private double[] indezes = null;
+	private double[] indizes = null;
 	
 	
 	/**
@@ -60,10 +60,10 @@ public class WerteMenge {
 	throws GueteException{
 		TreeSet<GueteVerfahren> alleVerfahren = new TreeSet<GueteVerfahren>();
 		
-		this.indezes = new double[datenSaetze.length];
-		for(int i = 0; i<indezes.length; i++){
+		this.indizes = new double[datenSaetze.length];
+		for(int i = 0; i<indizes.length; i++){
 			alleVerfahren.add(datenSaetze[i].getVerfahren());
-			this.indezes[i] = datenSaetze[i].getIndex();
+			this.indizes[i] = datenSaetze[i].getIndex();
 			if(alleVerfahren.size() > 1){
 				throw new GueteException("Die uebergebenen Datensaetze verlangen" + //$NON-NLS-1$
 						" unterschiedliche Guete-Berechnungsverfahren"); //$NON-NLS-1$
@@ -75,12 +75,12 @@ public class WerteMenge {
 
 
 	/**
-	 * Erfragt die Guete-Indezes
+	 * Erfragt die Guete-Indizes
 	 * 
-	 * @return indezes die Guete-Indezes
+	 * @return indizes die Guete-Indizes
 	 */
-	public final double[] getIndezes() {
-		return indezes;
+	public final double[] getIndizes() {
+		return indizes;
 	}
 
 
