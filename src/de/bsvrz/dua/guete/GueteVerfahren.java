@@ -64,9 +64,13 @@ extends AbstractDavZustand{
 	 */
 	private IGuete berechnungsVorschrift = null;
 	
-	
+
 	/**
-	 * {@inheritDoc}
+	 * Standardkonstruktor
+	 * 
+	 * @param name der Name des Gueteverfahrens
+	 * @param code der Code des Gueteverfahrens
+	 * @param berechnungsVorschrift die Berechnungsvorschrift des Gueteverfahrens
 	 */
 	private GueteVerfahren(final String name,
 						   final int code,
@@ -91,7 +95,7 @@ extends AbstractDavZustand{
 	 * Erfragt den Wert dieses DAV-Enumerationstypen 
 	 * mit dem übergebenen Code
 	 *
-	 * @param der Code des Enumerations-Wertes
+	 * @param code der Code des Enumerations-Wertes
 	 */
 	public static final GueteVerfahren getZustand(int code){
 		return WERTE_BEREICH.get(code);
@@ -207,7 +211,7 @@ extends AbstractDavZustand{
 	 * <b>exponent</b> eine Gesamt-Güte unter der Vorraussetzung, dass der Wert, zu dem
 	 * dieser Güte-Index gehört mit dem Exponenten <b>exponent</b> potenziert worden ist.
 
-	 * @param quellGueten der Güte-Datensatz
+	 * @param quellGuete der Güte-Datensatz
 	 * @param exponent der Exponent
 	 * @return die Gesamt-Güte
 	 * @throws GueteException falls ungueltige Werte uebergeben worden sind
