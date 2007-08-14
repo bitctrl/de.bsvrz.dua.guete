@@ -52,40 +52,46 @@ public class GWert {
 	 * 
 	 * @param davGueteDatum ein DAV-Datum, dass den Guete-Index und das Guete-Verfahren
 	 * in der Form <code>index = Güte.Index</code> und <code>verfahren = Güte.Verfahren</code>
-	 * enthält 
-	 * @throws GueteException wenn das übergebene Datum nicht vollstädnig ausgelesen werden
-	 * konnte
+	 * enthält (<code>davGueteDatum != null</code>!)
 	 */
-	public GWert(final Data davGueteDatum)
-	throws GueteException{
+	public GWert(final Data davGueteDatum){
 		if(davGueteDatum == null){
 			throw new NullPointerException("Uebergebene Guete ist <<null>>"); //$NON-NLS-1$
 		}
 		
-		try{
-			this.index = davGueteDatum.getScaledValue("Index").doubleValue(); //$NON-NLS-1$
-			this.verfahren = GueteVerfahren.getZustand(davGueteDatum.
+		this.index = davGueteDatum.getScaledValue("Index").doubleValue(); //$NON-NLS-1$
+		this.verfahren = GueteVerfahren.getZustand(davGueteDatum.
 									getUnscaledValue("Verfahren").intValue()); //$NON-NLS-1$
-		}catch(Exception ex){
-			ex.printStackTrace();
-			throw new GueteException("Guete konnte nicht ausgelesen werden", ex); //$NON-NLS-1$
-		}
 	}
 	
 	
 	/**
-	 * Interner Konstruktor
+	 * Konstruktor
+	 * 
+	 * @param davDatum ein DAV-Datum (<code>!= null</code>)
+	 * @param attributName der Name des Attributs, unterhalb dem ein Item
+	 * <code>Güte</code> im übergebenen DAV-Datum steht. Also z.B. <code>qKfz</code> 
+	 * für ein DAV-KZD
+	 */
+	public GWert(final Data davDatum, final String attributName){
+		this(davDatum.getItem(attributName).getItem("Güte")); //$NON-NLS-1$
+	}
+	
+	
+	/**
+	 * Konstruktor
 	 * 
 	 * @param index der Guete-Index
 	 * @param verfahren das Berechnungsverfahren zur Behandlung dieser Guete
 	 * @throws GueteException wenn der Guete-Index kleiner 0 ist oder kein 
 	 * Berechnungsverfahren angegeben wurde
 	 */
-	protected GWert(final double index,
-					final GueteVerfahren verfahren)
+	public GWert(final double index,
+				 final GueteVerfahren verfahren)
 	throws GueteException{
-		if(index < 0.0){
-			throw new GueteException("Ungueltiger Gueteindex: " + index); //$NON-NLS-1$
+		if(index < 0.0 || index > 1.0){
+			throw new GueteException("Ungueltiger Gueteindex: " + index + //$NON-NLS-1$ 
+					". Index muss im Intervall [0, 1] liegen."); //$NON-NLS-1$
 		}
 		if(verfahren == null){
 			throw new GueteException("Es wurde kein Verfahren zur Berechnung der Guete angegeben"); //$NON-NLS-1$
@@ -112,6 +118,23 @@ public class GWert {
 	 */
 	public final GueteVerfahren getVerfahren() {
 		return verfahren;
+	}
+
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		boolean ergebnis = false;
+		
+		if(obj != null && obj instanceof GWert){
+			GWert that = (GWert)obj;
+			ergebnis = this.getIndex() == that.getIndex() &&
+					   this.getVerfahren().equals(that.getVerfahren());
+		}
+		
+		return ergebnis;
 	}
 
 
