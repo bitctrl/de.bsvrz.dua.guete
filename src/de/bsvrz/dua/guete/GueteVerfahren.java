@@ -32,6 +32,8 @@ import java.util.Map;
 import de.bsvrz.dua.guete.vorschriften.IGuete;
 import de.bsvrz.dua.guete.vorschriften.Standard;
 import de.bsvrz.sys.funclib.bitctrl.daf.AbstractDavZustand;
+import de.bsvrz.sys.funclib.bitctrl.dua.GanzZahl;
+import de.bsvrz.sys.funclib.bitctrl.dua.MesswertZustand;
 
 /**
  * Repräsentiert den DAV-Enumerationstypen
@@ -42,6 +44,19 @@ import de.bsvrz.sys.funclib.bitctrl.daf.AbstractDavZustand;
  */
 public class GueteVerfahren 
 extends AbstractDavZustand{
+		
+	/**
+	 * Standard-Guete mit Status <code>nicht ermittelbar/fehlerhaft</code>
+	 */
+	private static final GanzZahl FEHLERHAFT_BZW_NICHT_ERMITTELBAR = GanzZahl.getGueteIndex();
+	static{
+		FEHLERHAFT_BZW_NICHT_ERMITTELBAR.setZustand(MesswertZustand.FEHLERHAFT_BZW_NICHT_ERMITTELBAR);
+	}
+	
+	/**
+	 * GWert mit Status <code>nicht ermittelbar/fehlerhaft</code> und Standardverfahren
+	 */
+	public static final GWert STD_FEHLERHAFT_BZW_NICHT_ERMITTELBAR = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, GueteVerfahren.STANDARD);
 	
 	/**
 	 * Standardwert für die Guete
@@ -103,16 +118,35 @@ extends AbstractDavZustand{
 
 	
 	/**
+	 * Erfragt eine gewichtete Version des uebergebenen Guetewerts
+	 * 
+	 * @param quellGuete ein Guetewert
+	 * @param gewichtung die Gewichtung fuer den uebergebenen Guetewert
+	 * @return der <b>gewichtete</b> uebergebene Guetewert
+	 * @throws GueteException wenn die Verfahren zur Berechnung der Guete innerhalb der
+	 * uebergebenen Datensaetze nicht identisch sind
+	 */
+	public static GWert gewichte(final GWert quellGuete, final double gewichtung)
+	throws GueteException{
+		GWert ergebnis = new GWert(quellGuete.getIndex(), quellGuete.getVerfahren());
+		ergebnis.setGewichtung(gewichtung);
+		
+		return ergebnis;
+	}
+
+	
+	/**
 	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
 	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen diese
 	 * Güte-Indizes gehören mit dem Operator "<code>*</code>" verknüpft worden sind.
 	 * 
 	 * @param quellGueten die Güte-Datensätze aus denen die Gesamtgüte berechnet werden
 	 * soll
-	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
-	 * übergeben wurde
-	 * @throws GueteException wenn die Verfahren zur Berechnung der Güte innerhalb der
-	 * übergebenen Datensätze nicht identisch ist
+	 * @return die Gesamt-Güte, 1.0 für den Fall, dass eine leere Menge
+	 * übergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>, wenn der Wert sonst
+	 * nicht errechnet werden konnte
+	 * @throws GueteException wenn die Verfahren zur Berechnung der Guete innerhalb der
+	 * uebergebenen Datensaetze nicht identisch sind
 	 */
 	public static GWert produkt(final GWert... quellGueten)
 	throws GueteException{
@@ -120,8 +154,12 @@ extends AbstractDavZustand{
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().p(werteMenge.getIndizes()),
-							     werteMenge.getVerfahren());
+			if(werteMenge.isVerrechenbar()){
+				ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().p(werteMenge.getIndizes()),
+								     werteMenge.getVerfahren());
+			}else{
+				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren());
+			}
 		}
 		
 		return ergebnis;
@@ -135,10 +173,11 @@ extends AbstractDavZustand{
 	 * 
 	 * @param quellGueten die Güte-Datensätze aus denen die Gesamtgüte berechnet werden
 	 * soll
-	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
-	 * übergeben wurde  
-	 * @throws GueteException wenn die Verfahren zur Berechnung der Güte innerhalb der
-	 * übergebenen Datensätze nicht identisch ist
+	 * @return die Gesamt-Güte, 1.0 für den Fall, dass eine leere Menge
+	 * übergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>, wenn der Wert sonst
+	 * nicht errechnet werden konnte
+	 * @throws GueteException wenn die Verfahren zur Berechnung der Guete innerhalb der
+	 * uebergebenen Datensaetze nicht identisch sind
 	 */
 	public static GWert quotient(final GWert... quellGueten)
 	throws GueteException{
@@ -146,8 +185,12 @@ extends AbstractDavZustand{
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().q(werteMenge.getIndizes()),
-							     werteMenge.getVerfahren());
+			if(werteMenge.isVerrechenbar()){
+				ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().q(werteMenge.getIndizes()),
+								     werteMenge.getVerfahren());
+			}else{
+				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren());
+			}
 		}
 		
 		return ergebnis;
@@ -161,10 +204,11 @@ extends AbstractDavZustand{
 	 * 
 	 * @param quellGueten die Güte-Datensätze aus denen die Gesamtgüte berechnet werden
 	 * soll
-	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
-	 * übergeben wurde
- 	 * @throws GueteException wenn die Verfahren zur Berechnung der Güte innerhalb der
-	 * übergebenen Datensätze nicht identisch ist
+	 * @return die Gesamt-Güte, 1.0 für den Fall, dass eine leere Menge
+	 * übergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>, wenn der Wert sonst
+	 * nicht errechnet werden konnte
+ 	 * @throws GueteException wenn die Verfahren zur Berechnung der Guete innerhalb der
+	 * uebergebenen Datensaetze nicht identisch sind
 	 */
 	public static GWert summe(final GWert... quellGueten)
 	throws GueteException{
@@ -172,8 +216,17 @@ extends AbstractDavZustand{
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().s(werteMenge.getIndizes()),
-							     werteMenge.getVerfahren());
+			if(werteMenge.isVerrechenbar()){
+				if(werteMenge.isGewichtet()){
+					ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().sw(werteMenge.getIndizesMitGewichtung()),
+    			 			 			 werteMenge.getVerfahren());										
+				}else{			
+					ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().s(werteMenge.getIndizes()),
+									     werteMenge.getVerfahren());
+				}
+			}else{
+				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren());
+			}
 		}
 		
 		return ergebnis;
@@ -187,10 +240,11 @@ extends AbstractDavZustand{
 	 * 
 	 * @param quellGueten die Güte-Datensätze aus denen die Gesamtgüte berechnet werden
 	 * soll
-	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
-	 * übergeben wurde
- 	 * @throws GueteException wenn die Verfahren zur Berechnung der Güte innerhalb der
-	 * übergebenen Datensätze nicht identisch ist
+	 * @return die Gesamt-Güte, 1.0 für den Fall, dass eine leere Menge
+	 * übergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>, wenn der Wert sonst
+	 * nicht errechnet werden konnte
+ 	 * @throws GueteException wenn die Verfahren zur Berechnung der Guete innerhalb der
+	 * uebergebenen Datensaetze nicht identisch sind
 	 */
 	public static GWert differenz(final GWert... quellGueten)
 	throws GueteException{
@@ -198,8 +252,17 @@ extends AbstractDavZustand{
 		
 		if(quellGueten != null && quellGueten.length > 0){
 			WerteMenge werteMenge = new WerteMenge(quellGueten);
-			ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().d(werteMenge.getIndizes()),
-							     werteMenge.getVerfahren());
+			if(werteMenge.isVerrechenbar()){
+				if(werteMenge.isGewichtet()){
+					ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().dw(werteMenge.getIndizesMitGewichtung()),
+			     			 			 werteMenge.getVerfahren());					
+				}else{
+					ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().d(werteMenge.getIndizes()),
+						     			 werteMenge.getVerfahren());
+				}
+			}else{
+				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren());
+			}
 		}
 		
 		return ergebnis;
@@ -213,13 +276,20 @@ extends AbstractDavZustand{
 
 	 * @param quellGuete der Güte-Datensatz
 	 * @param exponent der Exponent
-	 * @return die Gesamt-Güte
+	 * @return die Gesamt-Güte oder <code>nicht ermittelbar/fehlerhaft</code>, wenn der Wert sonst
+	 * nicht errechnet werden konnte
 	 * @throws GueteException falls ungueltige Werte uebergeben worden sind
 	 */
 	public static GWert exp(final GWert quellGuete, final double exponent)
 	throws GueteException{
-		return new GWert(quellGuete.getVerfahren().getBerechnungsVorschrift().e(quellGuete.getIndex(), exponent), 
+		GWert ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, quellGuete.getVerfahren());
+	
+		if(quellGuete.isVerrechenbar()){
+			ergebnis = new GWert(quellGuete.getVerfahren().getBerechnungsVorschrift().e(quellGuete.getIndex(), exponent), 
 						 quellGuete.getVerfahren());
+		}
+		
+		return ergebnis;
 	}
 
 }

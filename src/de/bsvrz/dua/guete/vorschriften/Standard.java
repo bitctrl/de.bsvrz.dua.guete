@@ -38,9 +38,9 @@ implements IGuete{
 	
 	
 	/**
-	 * {@inheritDoc}.<br>
+	 * {@inheritDoc}<br>
 	 * 
-	 * Die einzelnen Werte werden hier additiv miteinander verknüpft
+	 * Ueber allen Werten wird hier das arithmetische Mittel berechnet
 	 */
 	public final double s(final double... quellGueten) {
 		double summe = 0.0;
@@ -58,12 +58,50 @@ implements IGuete{
 	
 	
 	/**
-	 * {@inheritDoc}.<br>
+	 * {@inheritDoc}<br>
 	 * 
-	 * Die einzelnen Werte werden hier additiv miteinander verknüpft
+	 * Ueber allen Werten wird hier das arithmetische Mittel
+	 * unter vorheriger Gewichtung der Einzelnwerte berechnet 
+	 */
+	public double sw(double[]... quellGuetenMitGewichtung) {
+		double summe = 0.0;
+		double summeGewichte = 0.0;
+		double mittelwert = 1.0;
+		
+		if(quellGuetenMitGewichtung != null && quellGuetenMitGewichtung.length != 0){
+			for(double[] gueteMitGewichtung:quellGuetenMitGewichtung){
+				double guete = gueteMitGewichtung[0];
+				double gewichtung = Math.abs(gueteMitGewichtung[1]);
+				summe += gewichtung * guete;
+				summeGewichte += gewichtung;
+			}
+			if(summeGewichte != 0){
+				mittelwert = summe / summeGewichte;
+			}
+		}
+		
+		return mittelwert;
+	}
+	
+	
+	/**
+	 * {@inheritDoc}<br>
+	 * 
+	 * Ueber allen Werten wird hier das arithmetische Mittel berechnet
 	 */
 	public final double d(final double... quellGueten){
 		return s(quellGueten);
+	}
+
+	
+	/**
+	 * {@inheritDoc}<br>
+	 * 
+	 * Ueber allen Werten wird hier das arithmetische Mittel
+	 * unter vorheriger Gewichtung der Einzelnwerte berechnet 
+	 */
+	public double dw(double[]... quellGuetenMitGewichtung) {
+		return sw(quellGuetenMitGewichtung);
 	}
 
 	
@@ -76,7 +114,7 @@ implements IGuete{
 
 	
 	/**
-	 * {@inheritDoc}.<br>
+	 * {@inheritDoc}<br>
 	 * 
 	 * Die einzelnen Werte werden hier multiplikativ miteinander verknüpft
 	 **/
@@ -94,7 +132,7 @@ implements IGuete{
 	
 
 	/**
-	 * {@inheritDoc}.<br>
+	 * {@inheritDoc}<br>
 	 * 
 	 * Die einzelnen Werte werden hier multiplikativ miteinander verknüpft
 	 */

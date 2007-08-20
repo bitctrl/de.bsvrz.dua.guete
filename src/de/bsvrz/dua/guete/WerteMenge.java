@@ -46,6 +46,23 @@ public class WerteMenge {
 	 * die Guete-Indizes
 	 */
 	private double[] indizes = null;
+
+	/**
+	 * die Guete-Indizes mit Gewichtung
+	 */
+	private double[][] indizesMitGewichtung = null;
+	
+	/**
+	 * zeigt an, ob einer der Werte gewichtet ist
+	 */
+	private boolean gewichtet = false;
+	
+	/**
+	 * Zeigt an, ob einer der Indizes, innerhalb dieser Menge
+	 * auf einem der Zustände <code>fehlerhaft</code>, <code>nicht ermittelbar</code> oder
+	 * <code>nicht ermittelbar/fehlerhaft</code> steht
+	 */
+	private boolean verrechenbar = true;
 	
 	
 	/**
@@ -56,40 +73,87 @@ public class WerteMenge {
 	 * @throws GueteException wenn die uebergebenen Datensaetze nicht alle dasselbe
 	 * Berechnungs-Verfahren implementieren
 	 */
-	public WerteMenge(GWert... datenSaetze)
+	protected WerteMenge(GWert... datenSaetze)
 	throws GueteException{
 		TreeSet<GueteVerfahren> alleVerfahren = new TreeSet<GueteVerfahren>();
 		
 		this.indizes = new double[datenSaetze.length];
+		this.indizesMitGewichtung = new double[datenSaetze.length][2];
 		for(int i = 0; i<indizes.length; i++){
 			alleVerfahren.add(datenSaetze[i].getVerfahren());
 			this.indizes[i] = datenSaetze[i].getIndex();
+			
+			this.indizesMitGewichtung[i][0] = datenSaetze[i].getIndex();
+			this.indizesMitGewichtung[i][1] = datenSaetze[i].getGewichtung();
+			if(datenSaetze[i].getGewichtung() != 1.0){
+				this.gewichtet = true;
+			}
+			
 			if(alleVerfahren.size() > 1){
 				throw new GueteException("Die uebergebenen Datensaetze verlangen" + //$NON-NLS-1$
 						" unterschiedliche Guete-Berechnungsverfahren"); //$NON-NLS-1$
+			}
+			
+			if( !datenSaetze[i].isVerrechenbar() ){
+				verrechenbar = false;
+				break;
 			}
 		}
 		
 		this.verfahren = alleVerfahren.first();
 	}
 
-
+	
+	/**
+	 * Erfragt, ob einer der Indizes, innerhalb dieser Menge
+	 * auf einem der Zustände <code>fehlerhaft</code>, <code>nicht ermittelbar</code> oder
+	 * <code>nicht ermittelbar/fehlerhaft</code> steht 
+	 * 
+	 * @return ob einer der Indizes, innerhalb dieser Menge
+	 * auf einem der Zustände <code>fehlerhaft</code>, <code>nicht ermittelbar</code> oder
+	 * <code>nicht ermittelbar/fehlerhaft</code> steht 
+	 */
+	protected final boolean isVerrechenbar(){
+		return this.verrechenbar;
+	}
+	
+	
 	/**
 	 * Erfragt die Guete-Indizes
 	 * 
-	 * @return indizes die Guete-Indizes
+	 * @return die Guete-Indizes
 	 */
-	public final double[] getIndizes() {
+	protected final double[] getIndizes() {
 		return indizes;
+	}
+	
+	
+	/**
+	 * Erfragt die Guete-Indizes mit Gewichtung
+	 * 
+	 * @return die Guete-Indizes mit Gewichtung
+	 */
+	protected final double[][] getIndizesMitGewichtung() {
+		return this.indizesMitGewichtung;
 	}
 
 
 	/**
+	 * Erfragt, ob einer der Werte innerhalb in dieser Wertemenge gewichtet ist
+	 * 
+	 * @return ob einer der Werte innerhalb in dieser Wertemenge gewichtet ist
+	 */
+	protected final boolean isGewichtet(){
+		return this.gewichtet;
+	}
+	
+	
+	/**
 	 * Erfragt das Berechnungs-Verfahren
 	 * 
-	 * @return verfahren das Berechnungs-Verfahren
+	 * @return das Berechnungs-Verfahren
 	 */
-	public final GueteVerfahren getVerfahren() {
+	protected final GueteVerfahren getVerfahren() {
 		return verfahren;
 	}
 	

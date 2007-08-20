@@ -44,15 +44,4 @@ extends Exception{
 		super(nachricht);
 	}
 
-	
-	/**
-	 * Konstruktor für Weiterleitung von Ausnahmen
-	 * 
-	 * @param nachricht eine Nachricht
-	 * @param ausnahme eine Ausnahme
-	 */
-	public GueteException(final String nachricht, final Exception ausnahme){
-		super(nachricht, ausnahme);
-	}
-
 }

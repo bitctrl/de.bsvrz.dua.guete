@@ -48,6 +48,7 @@ public interface IGuete {
 	 */
 	public double p(final double... quellGueten);
 
+	
 	/**
 	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
 	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen diese
@@ -60,6 +61,7 @@ public interface IGuete {
 	 */
 	public double q(final double... quellGueten);
 
+	
 	/**
 	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
 	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen diese
@@ -71,7 +73,22 @@ public interface IGuete {
 	 * übergeben wurde
 	 */
 	public double s(final double... quellGueten);
+	
+	
+	/**
+	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen diese
+	 * Güte-Indizes gehören mit dem Operator "<code>+</code>" verknüpft worden sind.
+	 * 
+	 * @param quellGuetenMitGewichtung die Güte-Indizes aus denen die Gesamt-Güte berechnet werden
+	 * soll mit einem jeweiligen Gewichtungsfaktor<br> 
+	 * (Alle Werte sind Tupel der Form <code>[Wert, Gewichtung]</code>)
+	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
+	 * übergeben wurde
+	 */
+	public double sw(final double[]... quellGuetenMitGewichtung);
 
+	
 	/**
 	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
 	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen diese
@@ -83,6 +100,21 @@ public interface IGuete {
 	 * übergeben wurde
 	 */
 	public double d(final double... quellGueten);
+	
+
+	/**
+	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen diese
+	 * Güte-Indizes gehören mit dem Operator "<code>-</code>" verknüpft worden sind.
+	 * 
+	 * @param quellGuetenMitGewichtung die Güte-Indizes aus denen die Gesamt-Güte berechnet werden
+	 * soll mit einem jeweiligen Gewichtungsfaktor<br> 
+	 * (Alle Werte sind Tupel der Form <code>[Wert, Gewichtung]</code>)
+	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
+	 * übergeben wurde
+	 */
+	public double dw(final double[]... quellGuetenMitGewichtung);
+
 	
 	/**
 	 * Diese Methode berechnet aus dem Güte-Index <b>quellGuete</b> und dem Exponenten
