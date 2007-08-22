@@ -108,7 +108,7 @@ public class GWert {
 	
 	
 	/**
-	 * Konstruktor
+	 * Konstruktor für die Eingabe von Ganzzahlen
 	 * 
 	 * @param gueteWert ein skalierter Guetewert
 	 * @param verfahren das Berechnungsverfahren zur Behandlung dieser Guete
@@ -151,6 +151,17 @@ public class GWert {
 	public static final GWert getNichtErmittelbareGuete(final GueteVerfahren verfahren){
 		GanzZahl guete = GanzZahl.getGueteIndex();
 		guete.setZustand(MesswertZustand.FEHLERHAFT_BZW_NICHT_ERMITTELBAR);
+		return new GWert(GanzZahl.getGueteIndex(), verfahren);
+	}
+
+
+	/**
+	 * Erfragt eine Instanz eines Guetewertes mit der Guete <code>1.0</code>
+	 * 
+	 * @param verfahren das Guete-Verfahren
+	 * @return eine Instanz eines Guetewertes mit der Guete <code>1.0</code>
+	 */
+	public static final GWert getMaxGueteWert(final GueteVerfahren verfahren){
 		return new GWert(GanzZahl.getGueteIndex(), verfahren);
 	}
 
@@ -282,6 +293,6 @@ public class GWert {
 	 */
 	@Override
 	public String toString() {
-		return "Index: " + index + "\nVerfahren: " + this.verfahren; //$NON-NLS-1$ //$NON-NLS-2$
+		return "Index: " + this.index + "\nVerfahren: " + this.verfahren; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }
