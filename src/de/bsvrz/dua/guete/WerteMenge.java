@@ -80,6 +80,10 @@ public class WerteMenge {
 		this.indizes = new double[datenSaetze.length];
 		this.indizesMitGewichtung = new double[datenSaetze.length][2];
 		for(int i = 0; i<indizes.length; i++){
+			if( !datenSaetze[i].isVerrechenbar() ){
+				verrechenbar = false;
+				break;
+			}
 			alleVerfahren.add(datenSaetze[i].getVerfahren());
 			this.indizes[i] = datenSaetze[i].getIndex();
 			
@@ -92,12 +96,7 @@ public class WerteMenge {
 			if(alleVerfahren.size() > 1){
 				throw new GueteException("Die uebergebenen Datensaetze verlangen" + //$NON-NLS-1$
 						" unterschiedliche Guete-Berechnungsverfahren"); //$NON-NLS-1$
-			}
-			
-			if( !datenSaetze[i].isVerrechenbar() ){
-				verrechenbar = false;
-				break;
-			}
+			}			
 		}
 		
 		this.verfahren = alleVerfahren.first();

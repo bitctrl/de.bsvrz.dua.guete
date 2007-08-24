@@ -86,8 +86,12 @@ public class GWert {
 		
 		this.gueteAusDavWert = GanzZahl.getGueteIndex();
 		this.gueteAusDavWert.setWert(davGueteDatum.getUnscaledValue("Index").longValue()); //$NON-NLS-1$
-		if( !this.gueteAusDavWert.isZustand() ){
-			this.index = this.gueteAusDavWert.getSkaliertenWert();
+		if(this.isVerrechenbar()){
+			if(this.gueteAusDavWert.getWert() == DUAKonstanten.NICHT_ERMITTELBAR){
+				this.index = 0.0;
+			}else{
+				this.index = this.gueteAusDavWert.getSkaliertenWert();
+			}
 		}
 		this.verfahren = GueteVerfahren.getZustand(davGueteDatum.
 									getUnscaledValue("Verfahren").intValue()); //$NON-NLS-1$
@@ -116,11 +120,28 @@ public class GWert {
 	public GWert(final GanzZahl gueteWert, final GueteVerfahren verfahren){
 		this.gueteAusDavWert = gueteWert;
 		this.verfahren = verfahren;
-		if( !this.gueteAusDavWert.isZustand() ){
-			this.index = this.gueteAusDavWert.getSkaliertenWert();
+		if(this.isVerrechenbar()){
+			if(this.gueteAusDavWert.getWert() == DUAKonstanten.NICHT_ERMITTELBAR){
+				this.index = 0.0;
+			}else{
+				this.index = this.gueteAusDavWert.getSkaliertenWert();
+			}
 		}
 	}
 	
+
+	/**
+	 * Kopierkonstruktor
+	 * 
+	 * @param vorlage ein zu kopierendes <code>GWert</code>-Objekt
+	 */
+	public GWert(final GWert vorlage){
+		this.verfahren = vorlage.verfahren;
+		this.index = vorlage.index;
+		this.gewichtung = vorlage.gewichtung;
+		this.gueteAusDavWert = new GanzZahl(vorlage.gueteAusDavWert);
+	}
+
 	
 	/**
 	 * Interner Konstruktor (nur für Zwischenergebnisse)
@@ -204,15 +225,14 @@ public class GWert {
 	public final long getIndexUnskaliert(){
 		long indexUnskaliert = DUAKonstanten.NICHT_ERMITTELBAR_BZW_FEHLERHAFT;
 		
-		GanzZahl dummy = GanzZahl.getGueteIndex();
-		dummy.setSkaliertenWert(this.index);
-		
-		if(dummy.isZustand()){
-			indexUnskaliert = dummy.getZustand().getCode();
-		}else{
-			if(dummy.getWert() >= GUETE_MIN && dummy.getWert() <= GUETE_MAX){
+		if(this.index != -1){	// d.h. der Index wurde bereits initialisiert
+			if(this.index >= GUETE_MIN && this.index <= GUETE_MAX){
+				GanzZahl dummy = GanzZahl.getGueteIndex();
+				dummy.setSkaliertenWert(this.index);
 				indexUnskaliert = dummy.getWert();
 			}
+		}else{
+			indexUnskaliert = this.gueteAusDavWert.getWert();
 		}
 		
 		return indexUnskaliert;	
@@ -260,14 +280,16 @@ public class GWert {
 	 * Erfragt, ob dieser Guetewert verrechenbar ist<br>
 	 * Ein Guete-Wert gilt hier als verrechenbar, wenn er entweder ein Zwischenergebnis
 	 * ist (also nicht mit den Standardkonstruktoren instanziiert wurde) oder wenn er kein
-	 * Zwischenergebnis ist und nicht auf einem der drei Zustände
-	 * <code>fehlerhaft</code>, <code>nicht ermittelbar</code> oder
-	 * <code>nicht ermittelbar/fehlerhaft</code> steht
+	 * Zwischenergebnis ist und nicht auf einem der zwei Zustände
+	 * <code>fehlerhaft</code> oder <code>nicht ermittelbar/fehlerhaft</code> steht
 	 *  
 	 * @return ob dieser Guetewert verrechenbar ist
 	 */
 	protected final boolean isVerrechenbar(){
-		return this.gueteAusDavWert == null || !this.gueteAusDavWert.isZustand();
+		return this.gueteAusDavWert == null || // Zwischenwert
+			  !this.gueteAusDavWert.isZustand() ||	// Wert ist kein Zwischenwert und hat keinen Zustand
+			  (this.gueteAusDavWert.isZustand() &&	// Wert ist kein Zwischenwert und hat den Zustand <code>nicht ermittelbar</code>
+					  this.gueteAusDavWert.getZustand().equals(MesswertZustand.NICHT_ERMITTELBAR));
 	}
 	
 	

@@ -286,7 +286,7 @@ extends AbstractDavZustand{
 	
 		if(quellGuete.isVerrechenbar()){
 			ergebnis = new GWert(quellGuete.getVerfahren().getBerechnungsVorschrift().e(quellGuete.getIndex(), exponent), 
-						 quellGuete.getVerfahren());
+								 quellGuete.getVerfahren());
 		}
 		
 		return ergebnis;
