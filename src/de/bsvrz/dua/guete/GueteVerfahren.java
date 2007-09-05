@@ -56,7 +56,7 @@ extends AbstractDavZustand{
 	/**
 	 * GWert mit Status <code>nicht ermittelbar/fehlerhaft</code> und Standardverfahren
 	 */
-	public static final GWert STD_FEHLERHAFT_BZW_NICHT_ERMITTELBAR = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, GueteVerfahren.STANDARD);
+	public static final GWert STD_FEHLERHAFT_BZW_NICHT_ERMITTELBAR = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, GueteVerfahren.STANDARD, false);
 	
 	/**
 	 * Standardwert für die Guete
@@ -158,7 +158,7 @@ extends AbstractDavZustand{
 				ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().p(werteMenge.getIndizes()),
 								     werteMenge.getVerfahren());
 			}else{
-				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren());
+				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren(), false);
 			}
 		}
 		
@@ -189,7 +189,7 @@ extends AbstractDavZustand{
 				ergebnis = new GWert(werteMenge.getVerfahren().getBerechnungsVorschrift().q(werteMenge.getIndizes()),
 								     werteMenge.getVerfahren());
 			}else{
-				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren());
+				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren(), false);
 			}
 		}
 		
@@ -225,7 +225,7 @@ extends AbstractDavZustand{
 									     werteMenge.getVerfahren());
 				}
 			}else{
-				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren());
+				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren(), false);
 			}
 		}
 		
@@ -261,7 +261,7 @@ extends AbstractDavZustand{
 						     			 werteMenge.getVerfahren());
 				}
 			}else{
-				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren());
+				ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, werteMenge.getVerfahren(), false);
 			}
 		}
 		
@@ -282,7 +282,7 @@ extends AbstractDavZustand{
 	 */
 	public static GWert exp(final GWert quellGuete, final double exponent)
 	throws GueteException{
-		GWert ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, quellGuete.getVerfahren());
+		GWert ergebnis = new GWert(FEHLERHAFT_BZW_NICHT_ERMITTELBAR, quellGuete.getVerfahren(), false);
 	
 		if(quellGuete.isVerrechenbar()){
 			ergebnis = new GWert(quellGuete.getVerfahren().getBerechnungsVorschrift().e(quellGuete.getIndex(), exponent), 

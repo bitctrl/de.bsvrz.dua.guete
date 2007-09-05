@@ -99,7 +99,7 @@ public class WerteMenge {
 			}			
 		}
 		
-		this.verfahren = alleVerfahren.first();
+		this.verfahren = alleVerfahren.isEmpty()?GueteVerfahren.STANDARD:alleVerfahren.first();
 	}
 
 	

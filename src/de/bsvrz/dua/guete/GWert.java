@@ -72,22 +72,46 @@ public class GWert {
 	
 	
 	/**
-	 * Standardkonstruktor
-	 * 
-	 * @param davGueteDatum ein DAV-Datum, dass den Guete-Index und das Guete-Verfahren
-	 * in der Form <code>index = </code>DAV-Datum<code>.Index</code> bzw. <code>verfahren =
-	 * </code>DAV-Datum<code>.Verfahren</code>
-	 * enthält (dabei muss <code>davGueteDatum != null</code> sein)
+	 * Standardkonstruktor<br>
+	 * <b>Achtung:</b> Dieser Konstruktor funktioniert nur fuer Attribute, deren Werte
+	 * in Ganzzahlen mit dem Zustand <code>nicht ermittelbar == -1</code> abbildbar sind
+	 *  
+	 * @param davDatum ein DAV-Datum (<code>!= null</code>)
+	 * @param attributName der Name des Attributs, unterhalb dem ein Item
+	 * <code>Güte</code> im übergebenen DAV-Datum steht. Also z.B. <code>qKfz</code> 
+	 * für ein DAV-Kurzzeitdatum
 	 */
-	public GWert(final Data davGueteDatum){
-		if(davGueteDatum == null){
-			throw new NullPointerException("Uebergebene Guete ist <<null>>"); //$NON-NLS-1$
+	public GWert(final Data davDatum,
+				 final String attributName){
+		this(davDatum, 
+			 attributName, 
+			 davDatum.getItem(attributName).getUnscaledValue("Wert").longValue() == DUAKonstanten.NICHT_ERMITTELBAR); //$NON-NLS-1$
+	}
+	
+
+	/**
+	 * Standardkonstruktor<br>
+	 *  
+	 * @param davDatum ein DAV-Datum (<code>!= null</code>)
+	 * @param attributName der Name des Attributs, unterhalb dem ein Item
+	 * <code>Güte</code> im übergebenen DAV-Datum steht. Also z.B. <code>qKfz</code> 
+	 * für ein DAV-Kurzzeitdatum
+	 * @param wertIsNichtErmittelbar gibt an, ob der Wert, mit dem diese Guete assoziiert
+	 * ist im Zustand <code>nicht ermittelbar</code> steht
+	 */
+	public GWert(final Data davDatum,
+				 final String attributName,
+				 final boolean wertIsNichtErmittelbar){
+		if(davDatum == null){
+			throw new NullPointerException("Uebergebenes Datum ist <<null>>"); //$NON-NLS-1$
 		}
-		
+
+		Data davGueteDatum = davDatum.getItem(attributName).getItem("Güte"); //$NON-NLS-1$
+				
 		this.gueteAusDavWert = GanzZahl.getGueteIndex();
 		this.gueteAusDavWert.setWert(davGueteDatum.getUnscaledValue("Index").longValue()); //$NON-NLS-1$
 		if(this.isVerrechenbar()){
-			if(this.gueteAusDavWert.getWert() == DUAKonstanten.NICHT_ERMITTELBAR){
+			if(wertIsNichtErmittelbar){
 				this.index = 0.0;
 			}else{
 				this.index = this.gueteAusDavWert.getSkaliertenWert();
@@ -96,32 +120,23 @@ public class GWert {
 		this.verfahren = GueteVerfahren.getZustand(davGueteDatum.
 									getUnscaledValue("Verfahren").intValue()); //$NON-NLS-1$
 	}
-	
-	
-	/**
-	 * Konstruktor
-	 * 
-	 * @param davDatum ein DAV-Datum (<code>!= null</code>)
-	 * @param attributName der Name des Attributs, unterhalb dem ein Item
-	 * <code>Güte</code> im übergebenen DAV-Datum steht. Also z.B. <code>qKfz</code> 
-	 * für ein DAV-Kurzzeitdatum
-	 */
-	public GWert(final Data davDatum, final String attributName){
-		this(davDatum.getItem(attributName).getItem("Güte")); //$NON-NLS-1$
-	}
-	
+
 	
 	/**
 	 * Konstruktor für die Eingabe von Ganzzahlen
 	 * 
 	 * @param gueteWert ein skalierter Guetewert
 	 * @param verfahren das Berechnungsverfahren zur Behandlung dieser Guete
+	 * @param wertIsNichtErmittelbar gibt an, ob der Wert, mit dem diese Guete assoziiert
+	 * ist im Zustand <code>nicht ermittelbar</code> steht
 	 */
-	public GWert(final GanzZahl gueteWert, final GueteVerfahren verfahren){
+	public GWert(final GanzZahl gueteWert,
+				 final GueteVerfahren verfahren,
+				 final boolean wertIsNichtErmittelbar){
 		this.gueteAusDavWert = gueteWert;
 		this.verfahren = verfahren;
 		if(this.isVerrechenbar()){
-			if(this.gueteAusDavWert.getWert() == DUAKonstanten.NICHT_ERMITTELBAR){
+			if(wertIsNichtErmittelbar){
 				this.index = 0.0;
 			}else{
 				this.index = this.gueteAusDavWert.getSkaliertenWert();
@@ -141,7 +156,7 @@ public class GWert {
 		this.gewichtung = vorlage.gewichtung;
 		this.gueteAusDavWert = new GanzZahl(vorlage.gueteAusDavWert);
 	}
-
+	
 	
 	/**
 	 * Interner Konstruktor (nur für Zwischenergebnisse)
@@ -172,7 +187,7 @@ public class GWert {
 	public static final GWert getNichtErmittelbareGuete(final GueteVerfahren verfahren){
 		GanzZahl guete = GanzZahl.getGueteIndex();
 		guete.setZustand(MesswertZustand.FEHLERHAFT_BZW_NICHT_ERMITTELBAR);
-		return new GWert(GanzZahl.getGueteIndex(), verfahren);
+		return new GWert(GanzZahl.getGueteIndex(), verfahren, false);
 	}
 
 
@@ -183,7 +198,7 @@ public class GWert {
 	 * @return eine Instanz eines Guetewertes mit der Guete <code>1.0</code>
 	 */
 	public static final GWert getMaxGueteWert(final GueteVerfahren verfahren){
-		return new GWert(GanzZahl.getGueteIndex(), verfahren);
+		return new GWert(GanzZahl.getGueteIndex(), verfahren, false);
 	}
 
 	
@@ -279,17 +294,13 @@ public class GWert {
 	/**
 	 * Erfragt, ob dieser Guetewert verrechenbar ist<br>
 	 * Ein Guete-Wert gilt hier als verrechenbar, wenn er entweder ein Zwischenergebnis
-	 * ist (also nicht mit den Standardkonstruktoren instanziiert wurde) oder wenn er kein
-	 * Zwischenergebnis ist und nicht auf einem der zwei Zustände
-	 * <code>fehlerhaft</code> oder <code>nicht ermittelbar/fehlerhaft</code> steht
+	 * ist (also nicht mit den Standardkonstruktoren instanziiert wurde) oder wenn er 
+	 * nicht auf einem Zustand (Wert <code>< 0</code>) steht 
 	 *  
 	 * @return ob dieser Guetewert verrechenbar ist
 	 */
 	protected final boolean isVerrechenbar(){
-		return this.gueteAusDavWert == null || // Zwischenwert
-			  !this.gueteAusDavWert.isZustand() ||	// Wert ist kein Zwischenwert und hat keinen Zustand
-			  (this.gueteAusDavWert.isZustand() &&	// Wert ist kein Zwischenwert und hat den Zustand <code>nicht ermittelbar</code>
-					  this.gueteAusDavWert.getZustand().equals(MesswertZustand.NICHT_ERMITTELBAR));
+		return this.gueteAusDavWert == null || !this.gueteAusDavWert.isZustand();
 	}
 	
 	
