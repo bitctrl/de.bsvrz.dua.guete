@@ -26,7 +26,7 @@
 
 package de.bsvrz.dua.guete;
 
-import stauma.dav.clientside.Data;
+import de.bsvrz.dav.daf.main.Data;
 import de.bsvrz.sys.funclib.bitctrl.dua.DUAKonstanten;
 import de.bsvrz.sys.funclib.bitctrl.dua.GanzZahl;
 import de.bsvrz.sys.funclib.bitctrl.dua.MesswertZustand;
