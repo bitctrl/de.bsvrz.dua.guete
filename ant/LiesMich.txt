@@ -21,6 +21,10 @@ Versionsgeschichte
 1.0.0
 
   - Erste Auslieferung
+
+1.1.0
+
+  - Umpacketierung
 	
 
 Disclaimer
