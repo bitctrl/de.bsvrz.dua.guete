@@ -57,7 +57,7 @@ public class GWert {
 	/**
 	 * Der Guete-Index
 	 */
-	private double index = -1;
+	private double index = Double.NaN;
 	
 	/**
 	 * Die Gewichtung des Guetewertes
@@ -240,7 +240,7 @@ public class GWert {
 	public final long getIndexUnskaliert(){
 		long indexUnskaliert = DUAKonstanten.NICHT_ERMITTELBAR_BZW_FEHLERHAFT;
 		
-		if(this.index != -1){	// d.h. der Index wurde bereits initialisiert
+		if(this.index != Double.NaN){	// d.h. der Index wurde bereits initialisiert
 			if(this.index >= GUETE_MIN && this.index <= GUETE_MAX){
 				GanzZahl dummy = GanzZahl.getGueteIndex();
 				dummy.setSkaliertenWert(this.index);
@@ -252,7 +252,31 @@ public class GWert {
 		
 		return indexUnskaliert;	
 	}
+
 	
+	/**
+	 * Erfragt den Gueteindex als unskalierten und ggf. gewichteten Wert
+	 * 
+	 * @return der Gueteindex als unskalierter und ggf. gewichteten Wert,
+	 * wie er nach der aktuellen Gewichtung aussehen wuerde
+	 */
+	public final long getIndexUnskaliertGewichtet(){
+		long indexUnskaliertUndGewichtet = DUAKonstanten.NICHT_ERMITTELBAR_BZW_FEHLERHAFT;
+		
+		if(this.index != Double.NaN){	// d.h. der Index wurde bereits initialisiert
+			double gewichteterWert = this.index * this.gewichtung;
+			if(gewichteterWert >= GUETE_MIN && gewichteterWert <= GUETE_MAX){
+				GanzZahl dummy = GanzZahl.getGueteIndex();
+				dummy.setSkaliertenWert(gewichteterWert);
+				indexUnskaliertUndGewichtet = dummy.getWert();
+			}
+		}else{
+			indexUnskaliertUndGewichtet = this.gueteAusDavWert.getWert();
+		}
+		
+		return indexUnskaliertUndGewichtet;	
+	}
+
 	
 	/**
 	 * Erfragt das Berechnungsverfahren zur Behandlung dieser Guete
