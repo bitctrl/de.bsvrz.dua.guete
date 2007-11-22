@@ -240,7 +240,7 @@ public class GWert {
 	public final long getIndexUnskaliert(){
 		long indexUnskaliert = DUAKonstanten.NICHT_ERMITTELBAR_BZW_FEHLERHAFT;
 		
-		if(this.index != Double.NaN){	// d.h. der Index wurde bereits initialisiert
+		if(! Double.isNaN(this.index)){	// d.h. der Index wurde bereits initialisiert
 			if(this.index >= GUETE_MIN && this.index <= GUETE_MAX){
 				GanzZahl dummy = GanzZahl.getGueteIndex();
 				dummy.setSkaliertenWert(this.index);
@@ -263,7 +263,7 @@ public class GWert {
 	public final long getIndexUnskaliertGewichtet(){
 		long indexUnskaliertUndGewichtet = DUAKonstanten.NICHT_ERMITTELBAR_BZW_FEHLERHAFT;
 		
-		if(this.index != Double.NaN){	// d.h. der Index wurde bereits initialisiert
+		if(! Double.isNaN(this.index)){	// d.h. der Index wurde bereits initialisiert
 			double gewichteterWert = this.index * this.gewichtung;
 			if(gewichteterWert >= GUETE_MIN && gewichteterWert <= GUETE_MAX){
 				GanzZahl dummy = GanzZahl.getGueteIndex();
