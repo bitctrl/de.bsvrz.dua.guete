@@ -203,6 +203,23 @@ public class GWert {
 
 	
 	/**
+	 * Erfragt eine Instanz eines Guetewertes mit der Guete <code>0.0</code>
+	 * 
+	 * @param verfahren das Guete-Verfahren
+	 * @return eine Instanz eines Guetewertes mit der Guete <code>0.0</code>
+	 */
+	public static final GWert getMinGueteWert(final GueteVerfahren verfahren){
+		GWert minWert = null;
+		try {
+			minWert = new GWert(0.0, verfahren);
+		} catch (GueteException e) {
+			// kann nicht passieren
+		}
+		return minWert;
+	}
+	
+	
+	/**
 	 * Setzt die Gewichtung dieses Wertes
 	 * 
 	 * @param gewichtung die Gewichtung dieses Wertes
