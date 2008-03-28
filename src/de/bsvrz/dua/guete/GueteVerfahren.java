@@ -44,7 +44,13 @@ import de.bsvrz.sys.funclib.bitctrl.dua.MesswertZustand;
  */
 public class GueteVerfahren 
 extends AbstractDavZustand{
-		
+
+	/**
+	 * Der Wertebereich dieses DAV-Enumerationstypen
+	 */
+	private static Map<Integer, GueteVerfahren> WERTE_BEREICH = 
+						new HashMap<Integer, GueteVerfahren>();
+	
 	/**
 	 * Standard-Guete mit Status <code>nicht ermittelbar/fehlerhaft</code>
 	 */
@@ -52,6 +58,11 @@ extends AbstractDavZustand{
 	static{
 		FEHLERHAFT_BZW_NICHT_ERMITTELBAR.setZustand(MesswertZustand.FEHLERHAFT_BZW_NICHT_ERMITTELBAR);
 	}
+	
+	/**
+	 * Standardverfahren gem‰ﬂ Anwenderforderungen
+	 */
+	public static final GueteVerfahren STANDARD = new GueteVerfahren("Standard", 0, new Standard()); //$NON-NLS-1$
 	
 	/**
 	 * GWert mit Status <code>nicht ermittelbar/fehlerhaft</code> und Standardverfahren
@@ -63,16 +74,7 @@ extends AbstractDavZustand{
 	 */
 	private static final double STANDARD_GUETE = 1.0;
 	
-	/**
-	 * Der Wertebereich dieses DAV-Enumerationstypen
-	 */
-	private static Map<Integer, GueteVerfahren> WERTE_BEREICH = 
-						new HashMap<Integer, GueteVerfahren>();
 	
-	/**
-	 * Standardverfahren gem‰ﬂ Anwenderforderungen
-	 */
-	public static final GueteVerfahren STANDARD = new GueteVerfahren("Standard", 0, new Standard()); //$NON-NLS-1$
 	
 	/**
 	 * die angewendete Berechnungsvorschrift
