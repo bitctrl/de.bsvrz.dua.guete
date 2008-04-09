@@ -34,47 +34,43 @@ import org.junit.Test;
 import de.bsvrz.dua.guete.vorschriften.IGuete;
 import de.bsvrz.dua.guete.vorschriften.Standard;
 
-
-
 /**
- * Test der Standard-Gueteberechnung
+ * Test der Standard-Gueteberechnung.
  * 
  * @author BitCtrl Systems GmbH, Thierfelder
- *
+ * 
+ * @version $Id$
  */
 public class StandardTest {
-	
+
 	/**
-	 * eine statische Instanz der Standard-Güteberechnung
+	 * eine statische Instanz der Standard-Güteberechnung.
 	 */
 	private IGuete g = null;
-	
-	
+
 	/**
-	 * Lädt eine statische Instanz der Standard-Güteberechnung
+	 * Lädt eine statische Instanz der Standard-Güteberechnung.
 	 */
 	@Before
-	public void setUp(){
+	public void setUp() {
 		this.g = new Standard();
 	}
-	
-	
+
 	/**
-	 * Testet die Methoden <code>q(..)</code> und <code>p(..)</code>, die in
-	 * der Standard-Güteberechnung identisch implementiert sind
+	 * Testet die Methoden <code>q(..)</code> und <code>p(..)</code>, die
+	 * in der Standard-Güteberechnung identisch implementiert sind.
 	 */
 	@Test
-	public void testPundQ(){
-		
+	public void testPundQ() {
+
 		Assert.assertEquals(1.0, g.p(null));
 		Assert.assertEquals(1.0, g.p());
 		Assert.assertEquals(1.0, g.p(1.0, 1.0));
-		
+
 		Assert.assertEquals(1.0, g.q(null));
 		Assert.assertEquals(1.0, g.q());
 		Assert.assertEquals(1.0, g.q(1.0, 1.0));
 
-		
 		Assert.assertEquals(0.5, g.p(1.0, 0.5));
 		Assert.assertEquals(0.5, g.p(0.5, 1.0));
 		Assert.assertEquals(0.125, g.p(0.5, 0.25));
@@ -82,7 +78,7 @@ public class StandardTest {
 		Assert.assertEquals(0.0, g.p(0.0, 1.0));
 		Assert.assertEquals(0.0, g.p(0.0, 1.0, 0.1));
 		Assert.assertEquals(1.0, g.p(1.0, 1.0, 1.0));
-		
+
 		Assert.assertEquals(0.5, g.q(1.0, 0.5));
 		Assert.assertEquals(0.5, g.q(0.5, 1.0));
 		Assert.assertEquals(0.125, g.q(0.5, 0.25));
@@ -90,299 +86,253 @@ public class StandardTest {
 		Assert.assertEquals(0.0, g.q(0.0, 1.0));
 		Assert.assertEquals(0.0, g.q(0.0, 1.0, 0.1));
 		Assert.assertEquals(1.0, g.q(1.0, 1.0, 1.0));
-		
+
 	}
 
-	
 	/**
- 	 * Testet die Methoden <code>s(..)</code> und <code>d(..)</code>, die in
-	 * der Standard-Güteberechnung identisch implementiert sind
+	 * Testet die Methoden <code>s(..)</code> und <code>d(..)</code>, die
+	 * in der Standard-Güteberechnung identisch implementiert sind.
 	 */
 	@Test
-	public void testSundD(){
+	public void testSundD() {
 
 		Assert.assertEquals(1.0, g.s(null));
 		Assert.assertEquals(1.0, g.s());
 		Assert.assertEquals(1.0, g.s(1.0, 1.0));
-		
+
 		Assert.assertEquals(1.0, g.d(null));
 		Assert.assertEquals(1.0, g.d());
 		Assert.assertEquals(1.0, g.d(1.0, 1.0));
-		
+
 		Assert.assertEquals(0.75, g.s(1.0, 0.5));
 		Assert.assertEquals(0.625, g.s(1.0, 0.5, 0.5, 0.5));
 		Assert.assertEquals(0.5, g.s(1.0, 0.5, 0.5, 0.5, 0.3, 0.2));
-		
+
 		Assert.assertEquals(0.75, g.d(1.0, 0.5));
 		Assert.assertEquals(0.625, g.d(1.0, 0.5, 0.5, 0.5));
 		Assert.assertEquals(0.5, g.d(1.0, 0.5, 0.5, 0.5, 0.3, 0.2));
-		
+
 	}
 
-	
 	/**
-	 * Testet die Methoden <code>e(..)</code>  der Standard-Güteberechnung
+	 * Testet die Methoden <code>e(..)</code> der Standard-Güteberechnung.
 	 */
 	@Test
-	public void testE(){
-		Assert.assertTrue( istPraktischGleich( 0.01, g.e(0.1, 2) ) );
-		Assert.assertTrue( istPraktischGleich( 0.001, g.e(0.1, 3)) );
-		Assert.assertTrue( istPraktischGleich( 1.0, g.e(2, 0)) );		
-		Assert.assertTrue( istPraktischGleich( 2.0, g.e(2, 1)) );
-		Assert.assertTrue( istPraktischGleich( 4.0, g.e(2, 2)) );
-		Assert.assertTrue( istPraktischGleich( Math.sqrt(2.0), g.e(2, 0.5)) );
+	public void testE() {
+		Assert.assertTrue(istPraktischGleich(0.01, g.e(0.1, 2)));
+		Assert.assertTrue(istPraktischGleich(0.001, g.e(0.1, 3)));
+		Assert.assertTrue(istPraktischGleich(1.0, g.e(2, 0)));
+		Assert.assertTrue(istPraktischGleich(2.0, g.e(2, 1)));
+		Assert.assertTrue(istPraktischGleich(4.0, g.e(2, 2)));
+		Assert.assertTrue(istPraktischGleich(Math.sqrt(2.0), g.e(2, 0.5)));
 	}
 
-	
 	/**
-	 * Fasst verschiedene Tests zusammen
+	 * Fasst verschiedene Tests zusammen.
 	 */
 	@Test
 	public void testAlles() {
-		
+
 		double a = 0.3;
 		double b = 0.4;
 		double c = 0.5;
 		double d = 0.6;
-		
-		Assert.assertEquals((a*b), g.p(a, b));
-		Assert.assertEquals((a*b), g.q(a, b));
-		
-		Assert.assertEquals(((a+b) / 2), g.s(a, b));
-		Assert.assertEquals(((a+b) / 2), g.d(a, b));
-		
-		Assert.assertEquals((a*b+c*d)/2 * ( (a+c)/2 ), g.q( g.s( g.p(a, b), g.p(c, d)), g.d(a, c)));
 
-		
+		Assert.assertEquals((a * b), g.p(a, b));
+		Assert.assertEquals((a * b), g.q(a, b));
+
+		Assert.assertEquals(((a + b) / 2), g.s(a, b));
+		Assert.assertEquals(((a + b) / 2), g.d(a, b));
+
+		Assert.assertEquals((a * b + c * d) / 2 * ((a + c) / 2), g.q(g.s(g.p(a,
+				b), g.p(c, d)), g.d(a, c)));
+
 		double a1 = 0.3;
 		double b1 = 0.4;
 		double c1 = 0.5;
 		double d1 = 0.6;
-		
-		Assert.assertEquals((a1*b1), g.p(a1, b1));
-		Assert.assertEquals((a1*b1), g.q(a1, b1));
-		
-		Assert.assertEquals(((a1+b1) / 2), g.s(a1, b1));
-		Assert.assertEquals(((a1+b1) / 2), g.d(a1, b1));
-		
-		Assert.assertEquals((a1*b1+c1*d1)/2 * ( (a1+c1)/2 ), 
-				
-				g.q(
-						g.sw( 
-								new double[]{g.p(a1, b1), 1.0},
-								new double[]{g.p(c1, d1), 1.0}),
-						g.dw(new double[]{a1, 1.0}, new double[]{c1, 1.0})));
-		
+
+		Assert.assertEquals((a1 * b1), g.p(a1, b1));
+		Assert.assertEquals((a1 * b1), g.q(a1, b1));
+
+		Assert.assertEquals(((a1 + b1) / 2), g.s(a1, b1));
+		Assert.assertEquals(((a1 + b1) / 2), g.d(a1, b1));
+
+		Assert.assertEquals((a1 * b1 + c1 * d1) / 2 * ((a1 + c1) / 2),
+
+		g.q(g.sw(new double[] { g.p(a1, b1), 1.0 }, new double[] { g.p(c1, d1),
+				1.0 }), g
+				.dw(new double[] { a1, 1.0 }, new double[] { c1, 1.0 })));
+
 	}
 
-	
 	/**
- 	 * Testet die Methoden <code>sw(..)</code> und <code>dw(..)</code>, die in
-	 * der Standard-Güteberechnung identisch implementiert sind
+	 * Testet die Methoden <code>sw(..)</code> und <code>dw(..)</code>, die
+	 * in der Standard-Güteberechnung identisch implementiert sind.
 	 */
 	@Test
-	public void testSWundDW(){
+	public void testSWundDW() {
 
-		Assert.assertEquals(1.0, g.sw((double[][])null));
+		Assert.assertEquals(1.0, g.sw((double[][]) null));
 		Assert.assertEquals(1.0, g.sw());
-		Assert.assertEquals(1.0, g.sw(new double[]{1.0, 1.0},
-				new double[]{1.0, 1.0}));
-		Assert.assertEquals(1.0, g.sw(new double[]{1.0, 2.0},
-				new double[]{1.0, 1.0}));
+		Assert.assertEquals(1.0, g.sw(new double[] { 1.0, 1.0 }, new double[] {
+				1.0, 1.0 }));
+		Assert.assertEquals(1.0, g.sw(new double[] { 1.0, 2.0 }, new double[] {
+				1.0, 1.0 }));
+		Assert.assertEquals(0.75, g.sw(new double[] { 1.0, 1.0 }, new double[] {
+				0.5, 1.0 }));
+		Assert.assertEquals(0.625, g.sw(new double[] { 1.0, 1.0 },
+				new double[] { 0.5, 1.0 }, new double[] { 0.5, 1.0 },
+				new double[] { 0.5, 1.0 }));
+		Assert.assertEquals(0.625, g.sw(new double[] { 1.0, 1.0 },
+				new double[] { 0.5, 1.0 }, new double[] { 0.5, 1.0 },
+				new double[] { 0.5, 1.0 }));
+		Assert.assertEquals(0.5, g.sw(new double[] { 1.0, 1.0 }, new double[] {
+				0.5, 1.0 }, new double[] { 0.5, 1.0 },
+				new double[] { 0.5, 1.0 }, new double[] { 0.3, 1.0 },
+				new double[] { 0.2, 1.0 }));
+		Assert.assertEquals(1.0, g.sw(new double[] { 1.0, 1.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, 1.0 }));
+		Assert.assertEquals(1.0, g.sw(new double[] { 1.0, 1.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, 0.0 }));
+		Assert.assertEquals(1.0, g.sw(new double[] { 1.0, 0.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, 0.0 }));
+		Assert.assertEquals(0.6, g.sw(new double[] { 1.0, 1.0 }, new double[] {
+				0.5, 4.0 }));
+		Assert.assertEquals(0.5, g.sw(new double[] { 1.0, 0.0 }, new double[] {
+				0.5, 4.0 }));
+		Assert.assertEquals(0.5, g.sw(new double[] { 1.0, 0.0 }, new double[] {
+				0.5, 4.0 }));
+		Assert.assertEquals(0.24, g.sw(new double[] { 0.1, 0.3 }, new double[] {
+				0.3, 0.7 }));
+		Assert.assertEquals(1.0, g.sw(new double[] { 1.0, -1.0 }, new double[] {
+				1.0, -1.0 }));
+		Assert.assertEquals(1.0, g.sw(new double[] { 1.0, -2.0 }, new double[] {
+				1.0, -1.0 }));
+		Assert.assertEquals(0.75, g.sw(new double[] { 1.0, 1.0 }, new double[] {
+				0.5, -1.0 }));
+		Assert.assertEquals(0.625, g.sw(new double[] { 1.0, -1.0 },
+				new double[] { 0.5, -1.0 }, new double[] { 0.5, -1.0 },
+				new double[] { 0.5, -1.0 }));
+		Assert.assertEquals(0.625, g.sw(new double[] { 1.0, -1.0 },
+				new double[] { 0.5, -1.0 }, new double[] { 0.5, -1.0 },
+				new double[] { 0.5, -1.0 }));
+		Assert
+				.assertEquals(0.5, g.sw(new double[] { 1.0, -1.0 },
+						new double[] { 0.5, -1.0 }, new double[] { 0.5, -1.0 },
+						new double[] { 0.5, -1.0 }, new double[] { 0.3, -1.0 },
+						new double[] { 0.2, -1.0 }));
 
-		Assert.assertEquals(0.75, g.sw(new double[]{1.0, 1.0},
-				new double[]{0.5, 1.0}));
-		Assert.assertEquals(0.625, g.sw(new double[]{1.0, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0}));
-		Assert.assertEquals(0.625, g.sw(new double[]{1.0, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0}));
-		Assert.assertEquals(0.5, g.sw(new double[]{1.0, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.3, 1.0},
-				new double[]{0.2, 1.0}));						
+		Assert.assertEquals(1.0, g.sw(new double[] { 1.0, -1.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, -1.0 }));
 
-		Assert.assertEquals(1.0, g.sw(new double[]{1.0, 1.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, 1.0}));						
+		Assert.assertEquals(1.0, g.sw(new double[] { 1.0, -1.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, 0.0 }));
 
-		Assert.assertEquals(1.0, g.sw(new double[]{1.0, 1.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0}));						
+		Assert.assertEquals(1.0, g.sw(new double[] { 1.0, 0.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, 0.0 }));
 
-		Assert.assertEquals(1.0, g.sw(new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0}));						
-
-		Assert.assertEquals(0.6, g.sw(new double[]{1.0, 1.0},
-				new double[]{0.5, 4.0}));						
-
-		Assert.assertEquals(0.5, g.sw(new double[]{1.0, 0.0},
-				new double[]{0.5, 4.0}));						
-
-		Assert.assertEquals(0.5, g.sw(new double[]{1.0, 0.0},
-				new double[]{0.5, 4.0}));
-
-		Assert.assertEquals(0.24, g.sw(new double[]{0.1, 0.3},
-				new double[]{0.3, 0.7}));
-
-		Assert.assertEquals(1.0, g.sw(new double[]{1.0, -1.0},
-				new double[]{1.0, -1.0}));
-		Assert.assertEquals(1.0, g.sw(new double[]{1.0, -2.0},
-				new double[]{1.0, -1.0}));
-
-		Assert.assertEquals(0.75, g.sw(new double[]{1.0, 1.0},
-				new double[]{0.5, -1.0}));
-		Assert.assertEquals(0.625, g.sw(new double[]{1.0, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0}));
-		Assert.assertEquals(0.625, g.sw(new double[]{1.0, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0}));
-		Assert.assertEquals(0.5, g.sw(new double[]{1.0, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.3, -1.0},
-				new double[]{0.2, -1.0}));						
-
-		Assert.assertEquals(1.0, g.sw(new double[]{1.0, -1.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, -1.0}));						
-
-		Assert.assertEquals(1.0, g.sw(new double[]{1.0, -1.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0}));						
-
-		Assert.assertEquals(1.0, g.sw(new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0}));						
-
-		Assert.assertEquals(0.6, g.sw(new double[]{1.0, -1.0},
-				new double[]{0.5, -4.0}));						
-
-		Assert.assertEquals(0.5, g.sw(new double[]{1.0, 0.0},
-				new double[]{0.5, -4.0}));						
-
-		Assert.assertEquals(0.5, g.sw(new double[]{1.0, 0.0},
-				new double[]{0.5, -4.0}));
-
-		Assert.assertEquals(0.24, g.sw(new double[]{0.1, -0.3},
-				new double[]{0.3, -0.7}));
-
-
-		Assert.assertEquals(1.0, g.dw((double[][])null));
+		Assert.assertEquals(0.6, g.sw(new double[] { 1.0, -1.0 }, new double[] {
+				0.5, -4.0 }));
+		Assert.assertEquals(0.5, g.sw(new double[] { 1.0, 0.0 }, new double[] {
+				0.5, -4.0 }));
+		Assert.assertEquals(0.5, g.sw(new double[] { 1.0, 0.0 }, new double[] {
+				0.5, -4.0 }));
+		Assert.assertEquals(0.24, g.sw(new double[] { 0.1, -0.3 },
+				new double[] { 0.3, -0.7 }));
+		Assert.assertEquals(1.0, g.dw((double[][]) null));
 		Assert.assertEquals(1.0, g.dw());
-		Assert.assertEquals(1.0, g.dw(new double[]{1.0, 1.0},
-				new double[]{1.0, 1.0}));
-		Assert.assertEquals(1.0, g.dw(new double[]{1.0, 2.0},
-				new double[]{1.0, 1.0}));
+		Assert.assertEquals(1.0, g.dw(new double[] { 1.0, 1.0 }, new double[] {
+				1.0, 1.0 }));
+		Assert.assertEquals(1.0, g.dw(new double[] { 1.0, 2.0 }, new double[] {
+				1.0, 1.0 }));
+		Assert.assertEquals(0.75, g.dw(new double[] { 1.0, 1.0 }, new double[] {
+				0.5, 1.0 }));
+		Assert.assertEquals(0.625, g.dw(new double[] { 1.0, 1.0 },
+				new double[] { 0.5, 1.0 }, new double[] { 0.5, 1.0 },
+				new double[] { 0.5, 1.0 }));
+		Assert.assertEquals(0.625, g.dw(new double[] { 1.0, 1.0 },
+				new double[] { 0.5, 1.0 }, new double[] { 0.5, 1.0 },
+				new double[] { 0.5, 1.0 }));
+		Assert.assertEquals(0.5, g.dw(new double[] { 1.0, 1.0 }, new double[] {
+				0.5, 1.0 }, new double[] { 0.5, 1.0 },
+				new double[] { 0.5, 1.0 }, new double[] { 0.3, 1.0 },
+				new double[] { 0.2, 1.0 }));
 
-		Assert.assertEquals(0.75, g.dw(new double[]{1.0, 1.0},
-				new double[]{0.5, 1.0}));
-		Assert.assertEquals(0.625, g.dw(new double[]{1.0, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0}));
-		Assert.assertEquals(0.625, g.dw(new double[]{1.0, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0}));
-		Assert.assertEquals(0.5, g.dw(new double[]{1.0, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.5, 1.0},
-				new double[]{0.3, 1.0},
-				new double[]{0.2, 1.0}));						
+		Assert.assertEquals(1.0, g.dw(new double[] { 1.0, 1.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, 1.0 }));
 
-		Assert.assertEquals(1.0, g.dw(new double[]{1.0, 1.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, 1.0}));						
+		Assert.assertEquals(1.0, g.dw(new double[] { 1.0, 1.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, 0.0 }));
 
-		Assert.assertEquals(1.0, g.dw(new double[]{1.0, 1.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0}));						
+		Assert.assertEquals(1.0, g.dw(new double[] { 1.0, 0.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, 0.0 }));
 
-		Assert.assertEquals(1.0, g.dw(new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0}));						
+		Assert.assertEquals(0.6, g.dw(new double[] { 1.0, 1.0 }, new double[] {
+				0.5, 4.0 }));
 
-		Assert.assertEquals(0.6, g.dw(new double[]{1.0, 1.0},
-				new double[]{0.5, 4.0}));						
+		Assert.assertEquals(0.5, g.dw(new double[] { 1.0, 0.0 }, new double[] {
+				0.5, 4.0 }));
 
-		Assert.assertEquals(0.5, g.dw(new double[]{1.0, 0.0},
-				new double[]{0.5, 4.0}));						
+		Assert.assertEquals(0.5, g.dw(new double[] { 1.0, 0.0 }, new double[] {
+				0.5, 4.0 }));
 
-		Assert.assertEquals(0.5, g.dw(new double[]{1.0, 0.0},
-				new double[]{0.5, 4.0}));
+		Assert.assertEquals(0.24, g.dw(new double[] { 0.1, 0.3 }, new double[] {
+				0.3, 0.7 }));
 
-		Assert.assertEquals(0.24, g.dw(new double[]{0.1, 0.3},
-				new double[]{0.3, 0.7}));
+		Assert.assertEquals(1.0, g.dw(new double[] { 1.0, -1.0 }, new double[] {
+				1.0, -1.0 }));
+		Assert.assertEquals(1.0, g.dw(new double[] { 1.0, -2.0 }, new double[] {
+				1.0, -1.0 }));
 
-		Assert.assertEquals(1.0, g.dw(new double[]{1.0, -1.0},
-				new double[]{1.0, -1.0}));
-		Assert.assertEquals(1.0, g.dw(new double[]{1.0, -2.0},
-				new double[]{1.0, -1.0}));
+		Assert.assertEquals(0.75, g.dw(new double[] { 1.0, 1.0 }, new double[] {
+				0.5, -1.0 }));
+		Assert.assertEquals(0.625, g.dw(new double[] { 1.0, -1.0 },
+				new double[] { 0.5, -1.0 }, new double[] { 0.5, -1.0 },
+				new double[] { 0.5, -1.0 }));
+		Assert.assertEquals(0.625, g.dw(new double[] { 1.0, -1.0 },
+				new double[] { 0.5, -1.0 }, new double[] { 0.5, -1.0 },
+				new double[] { 0.5, -1.0 }));
+		Assert
+				.assertEquals(0.5, g.dw(new double[] { 1.0, -1.0 },
+						new double[] { 0.5, -1.0 }, new double[] { 0.5, -1.0 },
+						new double[] { 0.5, -1.0 }, new double[] { 0.3, -1.0 },
+						new double[] { 0.2, -1.0 }));
 
-		Assert.assertEquals(0.75, g.dw(new double[]{1.0, 1.0},
-				new double[]{0.5, -1.0}));
-		Assert.assertEquals(0.625, g.dw(new double[]{1.0, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0}));
-		Assert.assertEquals(0.625, g.dw(new double[]{1.0, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0}));
-		Assert.assertEquals(0.5, g.dw(new double[]{1.0, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.5, -1.0},
-				new double[]{0.3, -1.0},
-				new double[]{0.2, -1.0}));						
+		Assert.assertEquals(1.0, g.dw(new double[] { 1.0, -1.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, -1.0 }));
 
-		Assert.assertEquals(1.0, g.dw(new double[]{1.0, -1.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, -1.0}));						
+		Assert.assertEquals(1.0, g.dw(new double[] { 1.0, -1.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, 0.0 }));
 
-		Assert.assertEquals(1.0, g.dw(new double[]{1.0, -1.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0}));						
+		Assert.assertEquals(1.0, g.dw(new double[] { 1.0, 0.0 }, new double[] {
+				1.0, 0.0 }, new double[] { 1.0, 0.0 }));
 
-		Assert.assertEquals(1.0, g.dw(new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0},
-				new double[]{1.0, 0.0}));						
+		Assert.assertEquals(0.6, g.dw(new double[] { 1.0, -1.0 }, new double[] {
+				0.5, -4.0 }));
 
-		Assert.assertEquals(0.6, g.dw(new double[]{1.0, -1.0},
-				new double[]{0.5, -4.0}));						
+		Assert.assertEquals(0.5, g.dw(new double[] { 1.0, 0.0 }, new double[] {
+				0.5, -4.0 }));
 
-		Assert.assertEquals(0.5, g.dw(new double[]{1.0, 0.0},
-				new double[]{0.5, -4.0}));						
+		Assert.assertEquals(0.5, g.dw(new double[] { 1.0, 0.0 }, new double[] {
+				0.5, -4.0 }));
 
-		Assert.assertEquals(0.5, g.dw(new double[]{1.0, 0.0},
-				new double[]{0.5, -4.0}));
-
-		Assert.assertEquals(0.24, g.dw(new double[]{0.1, -0.3},
-				new double[]{0.3, -0.7}));
+		Assert.assertEquals(0.24, g.dw(new double[] { 0.1, -0.3 },
+				new double[] { 0.3, -0.7 }));
 	}
 
-	
 	/**
-	 * Vergleicht 2 Gleitkommazahlen  
+	 * Vergleicht 2 Gleitkommazahlen.
 	 * 
-	 * @param a Zahl Nr.1
-	 * @param b Zahl Nr.1
-	 * @return ob die beiden Zahlen bis auf eine Toleranz von 0.000001 gleich sind
+	 * @param a
+	 *            Zahl Nr.1
+	 * @param b
+	 *            Zahl Nr.1
+	 * @return ob die beiden Zahlen bis auf eine Toleranz von 0.000001 gleich
+	 *         sind
 	 */
-	private final boolean istPraktischGleich(final double a, final double b){
+	private boolean istPraktischGleich(final double a, final double b) {
 		return Math.abs(a - b) < 0.000001;
 	}
-	
+
 }

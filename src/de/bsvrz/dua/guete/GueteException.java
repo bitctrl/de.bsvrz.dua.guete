@@ -27,20 +27,21 @@
 package de.bsvrz.dua.guete;
 
 /**
- * Indiziert, dass eine Gueteberechnung nicht durchgefuehrt werden konnte
+ * Indiziert, dass eine Gueteberechnung nicht durchgefuehrt werden konnte.
  * 
  * @author BitCtrl Systems GmbH, Thierfelder
- *
+ * 
+ * @version $Id$
  */
-public class GueteException
-extends Exception{
-	
+public class GueteException extends Exception {
+
 	/**
-	 * Standardkonstruktor
+	 * Standardkonstruktor.
 	 * 
-	 * @param nachricht eine Nachricht
+	 * @param nachricht
+	 *            eine Nachricht
 	 */
-	public GueteException(final String nachricht){
+	public GueteException(final String nachricht) {
 		super(nachricht);
 	}
 

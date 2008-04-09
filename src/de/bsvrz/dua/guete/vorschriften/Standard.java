@@ -26,85 +26,80 @@
 
 package de.bsvrz.dua.guete.vorschriften;
 
-
 /**
- * Implementierung des Verfahrens der Standard-Güteberechnung
+ * Implementierung des Verfahrens der Standard-Güteberechnung.
  * 
  * @author BitCtrl Systems GmbH, Thierfelder
- *
+ * 
+ * @version $Id$
  */
-public class Standard
-implements IGuete{
-	
-	
+public class Standard implements IGuete {
+
 	/**
-	 * {@inheritDoc}<br>
+	 * {@inheritDoc}.
 	 * 
 	 * Ueber allen Werten wird hier das arithmetische Mittel berechnet
 	 */
 	public final double s(final double... quellGueten) {
 		double summe = 0.0;
 		double mittelwert = 1.0;
-		
-		if(quellGueten != null && quellGueten.length != 0){
-			for(double guete:quellGueten){
+
+		if (quellGueten != null && quellGueten.length != 0) {
+			for (double guete : quellGueten) {
 				summe += guete;
 			}
 			mittelwert = summe / quellGueten.length;
 		}
-		
+
 		return mittelwert;
 	}
-	
-	
+
 	/**
-	 * {@inheritDoc}<br>
+	 * {@inheritDoc}.
 	 * 
-	 * Ueber allen Werten wird hier das arithmetische Mittel
-	 * unter vorheriger Gewichtung der Einzelnwerte berechnet 
+	 * Ueber allen Werten wird hier das arithmetische Mittel unter vorheriger
+	 * Gewichtung der Einzelnwerte berechnet
 	 */
 	public double sw(double[]... quellGuetenMitGewichtung) {
 		double summe = 0.0;
 		double summeGewichte = 0.0;
 		double mittelwert = 1.0;
-		
-		if(quellGuetenMitGewichtung != null && quellGuetenMitGewichtung.length != 0){
-			for(double[] gueteMitGewichtung:quellGuetenMitGewichtung){
+
+		if (quellGuetenMitGewichtung != null
+				&& quellGuetenMitGewichtung.length != 0) {
+			for (double[] gueteMitGewichtung : quellGuetenMitGewichtung) {
 				double guete = gueteMitGewichtung[0];
 				double gewichtung = Math.abs(gueteMitGewichtung[1]);
 				summe += gewichtung * guete;
 				summeGewichte += gewichtung;
 			}
-			if(summeGewichte != 0){
+			if (summeGewichte != 0) {
 				mittelwert = summe / summeGewichte;
 			}
 		}
-		
+
 		return mittelwert;
 	}
-	
-	
+
 	/**
-	 * {@inheritDoc}<br>
+	 * {@inheritDoc}.
 	 * 
 	 * Ueber allen Werten wird hier das arithmetische Mittel berechnet
 	 */
-	public final double d(final double... quellGueten){
+	public final double d(final double... quellGueten) {
 		return s(quellGueten);
 	}
 
-	
 	/**
-	 * {@inheritDoc}<br>
+	 * {@inheritDoc}.
 	 * 
-	 * Ueber allen Werten wird hier das arithmetische Mittel
-	 * unter vorheriger Gewichtung der Einzelnwerte berechnet 
+	 * Ueber allen Werten wird hier das arithmetische Mittel unter vorheriger
+	 * Gewichtung der Einzelnwerte berechnet
 	 */
 	public double dw(double[]... quellGuetenMitGewichtung) {
 		return sw(quellGuetenMitGewichtung);
 	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -112,27 +107,25 @@ implements IGuete{
 		return Math.pow(quellGuete, exponent);
 	}
 
-	
 	/**
-	 * {@inheritDoc}<br>
+	 * {@inheritDoc}.
 	 * 
 	 * Die einzelnen Werte werden hier multiplikativ miteinander verknüpft
-	 **/
+	 */
 	public final double p(final double... quellGueten) {
 		double produkt = 1.0;
-		
-		if(quellGueten != null && quellGueten.length != 0){
-			for(double guete:quellGueten){
+
+		if (quellGueten != null && quellGueten.length != 0) {
+			for (double guete : quellGueten) {
 				produkt *= guete;
 			}
 		}
-		
+
 		return produkt;
 	}
-	
 
 	/**
-	 * {@inheritDoc}<br>
+	 * {@inheritDoc}.
 	 * 
 	 * Die einzelnen Werte werden hier multiplikativ miteinander verknüpft
 	 */
