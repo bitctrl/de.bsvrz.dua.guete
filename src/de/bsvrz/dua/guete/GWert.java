@@ -146,7 +146,11 @@ public class GWert {
 			if (wertIsNichtErmittelbar) {
 				this.index = 0.0;
 			} else {
-				this.index = this.gueteAusDavWert.getSkaliertenWert();
+				if(this.gueteAusDavWert == null) {
+					this.index = GanzZahl.getGueteIndex().getSkaliertenWert();
+				} else {
+					this.index = this.gueteAusDavWert.getSkaliertenWert();	
+				}
 			}
 		}
 	}
@@ -272,7 +276,9 @@ public class GWert {
 				indexUnskaliert = dummy.getWert();
 			}
 		} else {
-			indexUnskaliert = this.gueteAusDavWert.getWert();
+			if(this.gueteAusDavWert != null) {
+				indexUnskaliert = this.gueteAusDavWert.getWert();
+			}
 		}
 
 		return indexUnskaliert;
@@ -296,7 +302,9 @@ public class GWert {
 				indexUnskaliertUndGewichtet = dummy.getWert();
 			}
 		} else {
-			indexUnskaliertUndGewichtet = this.gueteAusDavWert.getWert();
+			if(this.gueteAusDavWert != null) {
+				indexUnskaliertUndGewichtet = this.gueteAusDavWert.getWert();
+			}
 		}
 
 		return indexUnskaliertUndGewichtet;

@@ -18,18 +18,28 @@ eingebunden werden.
 Versionsgeschichte
 ==================
 
-1.0.0
+1.1.7
 
-  - Erste Auslieferung
+  - Problem mit NullPointerException bei Zwischenergebnissen 
+    der Gueteberechnung behoben
 
-1.1.0
+1.1.6
 
-  - Umpacketierung
-  
+  - 
+   
 1.1.5
 
   - Neuer Konstruktor fuer Guetewerte hinzugefuegt	
 
+1.1.0
+
+  - Umpacketierung
+
+1.0.0
+
+  - Erste Auslieferung
+
+  
 Disclaimer
 ==========
 

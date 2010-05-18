@@ -5,7 +5,7 @@ Bundle-SymbolicName: de.bsvrz.dua.guete
 Bundle-Version: 1.0.0
 Bundle-Localization: plugin
 Bundle-Vendor: BitCtrl Systems GmbH
-Require-Bundle: de.bsvrz.sys.funclib.bitctrl
+Require-Bundle: de.bsvrz.sys.funclib.bitctrl_xx
 Export-Package: de.bsvrz.dua.guete,
  de.bsvrz.dua.guete.verfahren,
  de.bsvrz.dua.guete.vorschriften
