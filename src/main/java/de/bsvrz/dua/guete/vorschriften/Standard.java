@@ -36,8 +36,6 @@ package de.bsvrz.dua.guete.vorschriften;
 public class Standard implements IGuete {
 
 	/**
-	 * {@inheritDoc}.
-	 *
 	 * Ueber allen Werten wird hier das arithmetische Mittel berechnet
 	 */
 	@Override
@@ -56,8 +54,6 @@ public class Standard implements IGuete {
 	}
 
 	/**
-	 * {@inheritDoc}.
-	 *
 	 * Ueber allen Werten wird hier das arithmetische Mittel unter vorheriger
 	 * Gewichtung der Einzelnwerte berechnet
 	 */
@@ -84,8 +80,6 @@ public class Standard implements IGuete {
 	}
 
 	/**
-	 * {@inheritDoc}.
-	 *
 	 * Ueber allen Werten wird hier das arithmetische Mittel berechnet
 	 */
 	@Override
@@ -94,8 +88,6 @@ public class Standard implements IGuete {
 	}
 
 	/**
-	 * {@inheritDoc}.
-	 *
 	 * Ueber allen Werten wird hier das arithmetische Mittel unter vorheriger
 	 * Gewichtung der Einzelnwerte berechnet
 	 */
@@ -104,18 +96,13 @@ public class Standard implements IGuete {
 		return sw(quellGuetenMitGewichtung);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public final double e(final double quellGuete, final double exponent) {
 		return Math.pow(quellGuete, exponent);
 	}
 
 	/**
-	 * {@inheritDoc}.
-	 *
-	 * Die einzelnen Werte werden hier multiplikativ miteinander verknüpft
+	 * Die einzelnen Werte werden hier multiplikativ miteinander verknüpft.
 	 */
 	@Override
 	public final double p(final double... quellGueten) {
@@ -131,13 +118,10 @@ public class Standard implements IGuete {
 	}
 
 	/**
-	 * {@inheritDoc}.
-	 *
 	 * Die einzelnen Werte werden hier multiplikativ miteinander verknüpft
 	 */
 	@Override
 	public final double q(final double... quellGueten) {
 		return p(quellGueten);
 	}
-
 }

@@ -63,8 +63,8 @@ public final class GueteVerfahren extends AbstractDavZustand {
 	 * Standardverfahren gemäß Anwenderforderungen.
 	 */
 	public static final GueteVerfahren STANDARD = new GueteVerfahren(
-			"Standard", 0, new Standard()); //$NON-NLS-1$
-
+			"Standard", 0, new Standard());
+	
 	/**
 	 * GWert mit Status <code>nicht ermittelbar/fehlerhaft</code> und
 	 * Standardverfahren.

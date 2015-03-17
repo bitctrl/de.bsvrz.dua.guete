@@ -96,8 +96,8 @@ public class WerteMenge {
 
 			if (alleVerfahren.size() > 1) {
 				throw new GueteException(
-						"Die uebergebenen Datensaetze verlangen" + //$NON-NLS-1$
-						" unterschiedliche Guete-Berechnungsverfahren"); //$NON-NLS-1$
+						"Die uebergebenen Datensaetze verlangen" + 
+						" unterschiedliche Guete-Berechnungsverfahren"); 
 			}
 		}
 

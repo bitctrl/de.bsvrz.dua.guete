@@ -89,7 +89,7 @@ public class GWert {
 				davDatum,
 				attributName,
 				davDatum.getItem(attributName)
-				.getUnscaledValue("Wert").longValue() == DUAKonstanten.NICHT_ERMITTELBAR); //$NON-NLS-1$
+				.getUnscaledValue("Wert").longValue() == DUAKonstanten.NICHT_ERMITTELBAR); 
 	}
 
 	/**
@@ -109,15 +109,15 @@ public class GWert {
 	public GWert(final Data davDatum, final String attributName,
 			final boolean wertIsNichtErmittelbar) {
 		if (davDatum == null) {
-			throw new NullPointerException("Uebergebenes Datum ist <<null>>"); //$NON-NLS-1$
+			throw new NullPointerException("Uebergebenes Datum ist <<null>>"); 
 		}
 
 		final Data davGueteDatum = davDatum.getItem(attributName).getItem(
-				"Güte"); //$NON-NLS-1$
+				"Güte"); 
 
 		this.gueteAusDavWert = GanzZahl.getGueteIndex();
 		this.gueteAusDavWert.setWert(davGueteDatum
-				.getUnscaledValue("Index").longValue()); //$NON-NLS-1$
+				.getUnscaledValue("Index").longValue()); 
 		if (this.isVerrechenbar()) {
 			if (wertIsNichtErmittelbar) {
 				this.index = 0.0;
@@ -126,7 +126,7 @@ public class GWert {
 			}
 		}
 		this.verfahren = GueteVerfahren.getZustand(davGueteDatum
-				.getUnscaledValue("Verfahren").intValue()); //$NON-NLS-1$
+				.getUnscaledValue("Verfahren").intValue()); 
 	}
 
 	/**
@@ -184,7 +184,7 @@ public class GWert {
 			throws GueteException {
 		if (verfahren == null) {
 			throw new GueteException(
-					"Es wurde kein Verfahren zur Berechnung der Guete angegeben"); //$NON-NLS-1$
+					"Es wurde kein Verfahren zur Berechnung der Guete angegeben"); 
 		}
 		this.index = index;
 		this.verfahren = verfahren;
@@ -334,8 +334,8 @@ public class GWert {
 	 *            <code>zielDatum != null</code> sein)
 	 */
 	public final void exportiere(final Data zielDatum) {
-		zielDatum.getUnscaledValue("Index").set(this.getIndexUnskaliert()); //$NON-NLS-1$
-		zielDatum.getUnscaledValue("Verfahren").set(this.verfahren.getCode()); //$NON-NLS-1$
+		zielDatum.getUnscaledValue("Index").set(this.getIndexUnskaliert()); 
+		zielDatum.getUnscaledValue("Verfahren").set(this.verfahren.getCode()); 
 	}
 
 	/**
@@ -349,7 +349,7 @@ public class GWert {
 	 *            <code>qKfz</code> für ein DAV-Kurzzeitdatum
 	 */
 	public final void exportiere(final Data zielDatum, final String attributName) {
-		this.exportiere(zielDatum.getItem(attributName).getItem("Güte")); //$NON-NLS-1$
+		this.exportiere(zielDatum.getItem(attributName).getItem("Güte")); 
 	}
 
 	/**
@@ -366,9 +366,6 @@ public class GWert {
 				|| !this.gueteAusDavWert.isZustand();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean equals(final Object obj) {
 		boolean ergebnis = false;
@@ -382,12 +379,9 @@ public class GWert {
 		return ergebnis;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String toString() {
-		return "Index: " + this.index + "\nVerfahren: " + this.verfahren; //$NON-NLS-1$ //$NON-NLS-2$
+		return "Index: " + this.index + "\nVerfahren: " + this.verfahren;  
 	}
 
 	@Override
