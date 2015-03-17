@@ -1,0 +1,75 @@
+*******************************************************************************
+*  Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung   *
+*******************************************************************************
+
+Version: 1.2.0
+
+
+Übersicht
+=========
+
+Diese SW-Einheit stellt über die Schnittstelle zu einer Funktionsbibliothek 
+eine Menge von Funktionen zur Berechnung eines Güte-Index aus mehreren Güte-Indizes
+zur Verfügung. Die Bibliothek wird in Form einer JAR-Datei (de.bsvrz.dua.guete.jar)
+bereitgestellt und kann über die CLASSPATH-Variable der Java-Maschine in eine Applikation
+eingebunden werden. 
+
+
+Versionsgeschichte
+==================
+
+1.2.0
+- Umstellung auf Maven-Build
+
+1.1.7
+
+  - Problem mit NullPointerException bei Zwischenergebnissen 
+    der Gueteberechnung behoben
+
+1.1.6
+
+  - 
+   
+1.1.5
+
+  - Neuer Konstruktor fuer Guetewerte hinzugefuegt	
+
+1.1.0
+
+  - Umpacketierung
+
+1.0.0
+
+  - Erste Auslieferung
+
+  
+Disclaimer
+==========
+
+Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung
+Copyright (C) 2007 BitCtrl Systems GmbH 
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 51
+Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+
+Kontakt
+=======
+
+BitCtrl Systems GmbH
+Weißenfelser Straße 67
+04229 Leipzig
+Phone: +49 341-490670
+mailto: info@bitctrl.de
+
