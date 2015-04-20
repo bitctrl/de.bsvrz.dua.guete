@@ -72,8 +72,9 @@ public class GWert {
 	private GanzZahl gueteAusDavWert;
 
 	/**
-	 * Standardkonstruktor<br>
-	 * . <b>Achtung:</b> Dieser Konstruktor funktioniert nur fuer Attribute,
+	 * Standardkonstruktor.
+	 * 
+	 * <b>Achtung:</b> Dieser Konstruktor funktioniert nur fuer Attribute,
 	 * deren Werte in Ganzzahlen mit dem Zustand
 	 * <code>nicht ermittelbar == -1</code> abbildbar sind
 	 *
@@ -93,8 +94,7 @@ public class GWert {
 	}
 
 	/**
-	 * Standardkonstruktor<br>
-	 * .
+	 * Standardkonstruktor.
 	 *
 	 * @param davDatum
 	 *            ein DAV-Datum (<code>!= null</code>)
@@ -296,8 +296,8 @@ public class GWert {
 	public final long getIndexUnskaliertGewichtet() {
 		long indexUnskaliertUndGewichtet = DUAKonstanten.NICHT_ERMITTELBAR_BZW_FEHLERHAFT;
 
-		if (!Double.isNaN(this.index)) { // d.h. der Index wurde bereits
-			// initialisiert
+		if (!Double.isNaN(this.index)) { 
+			// d.h. der Index wurde bereits initialisiert
 			final double gewichteterWert = this.index * this.gewichtung;
 			if ((gewichteterWert >= GWert.GUETE_MIN)
 					&& (gewichteterWert <= GWert.GUETE_MAX)) {
@@ -397,5 +397,4 @@ public class GWert {
 				+ ((verfahren == null) ? 0 : verfahren.hashCode());
 		return result;
 	}
-
 }
