@@ -35,8 +35,6 @@ import de.bsvrz.sys.funclib.bitctrl.dua.MesswertZustand;
  * Repräsentiert einen Guetewert inklusive Index und Verfahren.
  *
  * @author BitCtrl Systems GmbH, Thierfelder
- *
- * @version $Id$
  */
 public class GWert {
 

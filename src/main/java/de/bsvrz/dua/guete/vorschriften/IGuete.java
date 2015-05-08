@@ -31,8 +31,6 @@ package de.bsvrz.dua.guete.vorschriften;
  * die eine Berechnungsvorschrift zur Güteberechnung zur Verfügung stellen.
  *
  * @author BitCtrl Systems GmbH, Thierfelder
- *
- * @version $Id$
  */
 public interface IGuete {
 

@@ -33,25 +33,23 @@ import java.util.TreeSet;
  * (konsistent) zur Verfügung.
  *
  * @author BitCtrl Systems GmbH, Thierfelder
- *
- * @version $Id$
  */
 public class WerteMenge {
 
 	/**
 	 * Das Berechnungs-Verfahren.
 	 */
-	private GueteVerfahren verfahren;
+	private final GueteVerfahren verfahren;
 
 	/**
 	 * die Guete-Indizes.
 	 */
-	private double[] indizes;
+	private final double[] indizes;
 
 	/**
 	 * die Guete-Indizes mit Gewichtung.
 	 */
-	private double[][] indizesMitGewichtung;
+	private final double[][] indizesMitGewichtung;
 
 	/**
 	 * zeigt an, ob einer der Werte gewichtet ist.
@@ -96,13 +94,11 @@ public class WerteMenge {
 
 			if (alleVerfahren.size() > 1) {
 				throw new GueteException(
-						"Die uebergebenen Datensaetze verlangen"
-								+ " unterschiedliche Guete-Berechnungsverfahren");
+						"Die uebergebenen Datensaetze verlangen" + " unterschiedliche Guete-Berechnungsverfahren");
 			}
 		}
 
-		this.verfahren = alleVerfahren.isEmpty() ? GueteVerfahren.STANDARD
-				: alleVerfahren.first();
+		this.verfahren = alleVerfahren.isEmpty() ? GueteVerfahren.STANDARD : alleVerfahren.first();
 	}
 
 	/**
