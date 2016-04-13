@@ -17,6 +17,9 @@ eingebunden werden.
 Versionsgeschichte
 ==================
 
+1.3.0
+- Umstellung auf Funclib-Bitctrl-Dua
+
 1.2.0
 - Umstellung auf Maven-Build
 
