@@ -1,5 +1,5 @@
 /*
- * Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung
+ * Segment 4 DatenÃ¼bernahme und Aufbereitung (DUA), SWE 4.11 GÃ¼teberechnung
  * Copyright (C) 2007-2015 BitCtrl Systems GmbH
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -18,7 +18,7 @@
  *
  * Contact Information:<br>
  * BitCtrl Systems GmbH<br>
- * Weißenfelser Straße 67<br>
+ * WeiÃŸenfelser StraÃŸe 67<br>
  * 04229 Leipzig<br>
  * Phone: +49 341-490670<br>
  * mailto: info@bitctrl.de
@@ -28,111 +28,111 @@ package de.bsvrz.dua.guete.vorschriften;
 
 /**
  * <code>interface</code>, das von allen Klassen implementiert werden sollte,
- * die eine Berechnungsvorschrift zur Güteberechnung zur Verfügung stellen.
+ * die eine Berechnungsvorschrift zur GÃ¼teberechnung zur VerfÃ¼gung stellen.
  *
  * @author BitCtrl Systems GmbH, Thierfelder
  */
 public interface IGuete {
 
 	/**
-	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
-	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen
-	 * diese Güte-Indizes gehören mit dem Operator "<code>*</code>" verknüpft
+	 * Diese Methode berechnet aus allen GÃ¼te-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-GÃ¼te unter der Vorraussetzung, dass alle Werte, zu denen
+	 * diese GÃ¼te-Indizes gehÃ¶ren mit dem Operator "<code>*</code>" verknÃ¼pft
 	 * worden sind.
 	 *
 	 * @param quellGueten
-	 *            die Güte-Indizes aus denen die Gesamtgüte berechnet werden
+	 *            die GÃ¼te-Indizes aus denen die GesamtgÃ¼te berechnet werden
 	 *            soll
-	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
-	 *         übergeben wurde
+	 * @return die Gesamt-GÃ¼te oder 1.0, fÃ¼r den Fall, dass eine leere Menge
+	 *         Ã¼bergeben wurde
 	 */
 	double p(final double... quellGueten);
 
 	/**
-	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
-	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen
-	 * diese Güte-Indizes gehören mit dem Operator "<code>/</code>" verknüpft
+	 * Diese Methode berechnet aus allen GÃ¼te-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-GÃ¼te unter der Vorraussetzung, dass alle Werte, zu denen
+	 * diese GÃ¼te-Indizes gehÃ¶ren mit dem Operator "<code>/</code>" verknÃ¼pft
 	 * worden sind.
 	 *
 	 * @param quellGueten
-	 *            die Güte-Indizes aus denen die Gesamtgüte berechnet werden
+	 *            die GÃ¼te-Indizes aus denen die GesamtgÃ¼te berechnet werden
 	 *            soll
-	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
-	 *         übergeben wurde
+	 * @return die Gesamt-GÃ¼te oder 1.0, fÃ¼r den Fall, dass eine leere Menge
+	 *         Ã¼bergeben wurde
 	 */
 	double q(final double... quellGueten);
 
 	/**
-	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
-	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen
-	 * diese Güte-Indizes gehören mit dem Operator "<code>+</code>" verknüpft
+	 * Diese Methode berechnet aus allen GÃ¼te-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-GÃ¼te unter der Vorraussetzung, dass alle Werte, zu denen
+	 * diese GÃ¼te-Indizes gehÃ¶ren mit dem Operator "<code>+</code>" verknÃ¼pft
 	 * worden sind.
 	 *
 	 * @param quellGueten
-	 *            die Güte-Indizes aus denen die Gesamt-Güte berechnet werden
+	 *            die GÃ¼te-Indizes aus denen die Gesamt-GÃ¼te berechnet werden
 	 *            soll
-	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
-	 *         übergeben wurde
+	 * @return die Gesamt-GÃ¼te oder 1.0, fÃ¼r den Fall, dass eine leere Menge
+	 *         Ã¼bergeben wurde
 	 */
 	double s(final double... quellGueten);
 
 	/**
-	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
-	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen
-	 * diese Güte-Indizes gehören mit dem Operator "<code>+</code>" verknüpft
+	 * Diese Methode berechnet aus allen GÃ¼te-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-GÃ¼te unter der Vorraussetzung, dass alle Werte, zu denen
+	 * diese GÃ¼te-Indizes gehÃ¶ren mit dem Operator "<code>+</code>" verknÃ¼pft
 	 * worden sind.
 	 *
 	 * @param quellGuetenMitGewichtung
-	 *            die Güte-Indizes aus denen die Gesamt-Güte berechnet werden
+	 *            die GÃ¼te-Indizes aus denen die Gesamt-GÃ¼te berechnet werden
 	 *            soll mit einem jeweiligen Gewichtungsfaktor<br>
 	 *            (Alle Werte sind Tupel der Form
 	 *            <code>[Wert, Gewichtung]</code>)
-	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
-	 *         übergeben wurde
+	 * @return die Gesamt-GÃ¼te oder 1.0, fÃ¼r den Fall, dass eine leere Menge
+	 *         Ã¼bergeben wurde
 	 */
 	double sw(final double[]... quellGuetenMitGewichtung);
 
 	/**
-	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
-	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen
-	 * diese Güte-Indizes gehören mit dem Operator "<code>-</code>" verknüpft
+	 * Diese Methode berechnet aus allen GÃ¼te-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-GÃ¼te unter der Vorraussetzung, dass alle Werte, zu denen
+	 * diese GÃ¼te-Indizes gehÃ¶ren mit dem Operator "<code>-</code>" verknÃ¼pft
 	 * worden sind.
 	 *
 	 * @param quellGueten
-	 *            die Güte-Indizes aus denen die Gesamt-Güte berechnet werden
+	 *            die GÃ¼te-Indizes aus denen die Gesamt-GÃ¼te berechnet werden
 	 *            soll
-	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
-	 *         übergeben wurde
+	 * @return die Gesamt-GÃ¼te oder 1.0, fÃ¼r den Fall, dass eine leere Menge
+	 *         Ã¼bergeben wurde
 	 */
 	double d(final double... quellGueten);
 
 	/**
-	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
-	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen
-	 * diese Güte-Indizes gehören mit dem Operator "<code>-</code>" verknüpft
+	 * Diese Methode berechnet aus allen GÃ¼te-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-GÃ¼te unter der Vorraussetzung, dass alle Werte, zu denen
+	 * diese GÃ¼te-Indizes gehÃ¶ren mit dem Operator "<code>-</code>" verknÃ¼pft
 	 * worden sind.
 	 *
 	 * @param quellGuetenMitGewichtung
-	 *            die Güte-Indizes aus denen die Gesamt-Güte berechnet werden
+	 *            die GÃ¼te-Indizes aus denen die Gesamt-GÃ¼te berechnet werden
 	 *            soll mit einem jeweiligen Gewichtungsfaktor<br>
 	 *            (Alle Werte sind Tupel der Form
 	 *            <code>[Wert, Gewichtung]</code>)
-	 * @return die Gesamt-Güte oder 1.0, für den Fall, dass eine leere Menge
-	 *         übergeben wurde
+	 * @return die Gesamt-GÃ¼te oder 1.0, fÃ¼r den Fall, dass eine leere Menge
+	 *         Ã¼bergeben wurde
 	 */
 	double dw(final double[]... quellGuetenMitGewichtung);
 
 	/**
-	 * Diese Methode berechnet aus dem Güte-Index <b>quellGuete</b> und dem
-	 * Exponenten <b>exponent</b> eine Gesamt-Güte unter der Vorraussetzung,
-	 * dass der Wert, zu dem dieser Güte-Index gehört mit dem Exponenten
+	 * Diese Methode berechnet aus dem GÃ¼te-Index <b>quellGuete</b> und dem
+	 * Exponenten <b>exponent</b> eine Gesamt-GÃ¼te unter der Vorraussetzung,
+	 * dass der Wert, zu dem dieser GÃ¼te-Index gehÃ¶rt mit dem Exponenten
 	 * <b>exponent</b> potenziert worden ist.
 	 *
 	 * @param quellGuete
-	 *            der erste Güte-Index
+	 *            der erste GÃ¼te-Index
 	 * @param exponent
 	 *            der Exponent
-	 * @return die Gesamt-Güte
+	 * @return die Gesamt-GÃ¼te
 	 */
 	double e(final double quellGuete, final double exponent);
 

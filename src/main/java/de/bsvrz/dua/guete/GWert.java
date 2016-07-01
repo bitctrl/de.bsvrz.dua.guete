@@ -1,5 +1,5 @@
 /*
- * Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung
+ * Segment 4 DatenÃ¼bernahme und Aufbereitung (DUA), SWE 4.11 GÃ¼teberechnung
  * Copyright (C) 2007-2015 BitCtrl Systems GmbH
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -18,7 +18,7 @@
  *
  * Contact Information:<br>
  * BitCtrl Systems GmbH<br>
- * Weißenfelser Straße 67<br>
+ * WeiÃŸenfelser StraÃŸe 67<br>
  * 04229 Leipzig<br>
  * Phone: +49 341-490670<br>
  * mailto: info@bitctrl.de
@@ -32,7 +32,7 @@ import de.bsvrz.sys.funclib.bitctrl.dua.GanzZahl;
 import de.bsvrz.sys.funclib.bitctrl.dua.MesswertZustand;
 
 /**
- * Repräsentiert einen Guetewert inklusive Index und Verfahren.
+ * ReprÃ¤sentiert einen Guetewert inklusive Index und Verfahren.
  *
  * @author BitCtrl Systems GmbH, Thierfelder
  */
@@ -64,7 +64,7 @@ public class GWert {
 	private double gewichtung = 1.0;
 
 	/**
-	 * Der Guetewert, wie er über einen Standardkonstruktor <b>von aussen</b>
+	 * Der Guetewert, wie er Ã¼ber einen Standardkonstruktor <b>von aussen</b>
 	 * zur Verfuegung gestellt wurde.
 	 */
 	private GanzZahl gueteAusDavWert;
@@ -80,8 +80,8 @@ public class GWert {
 	 *            ein DAV-Datum (<code>!= null</code>)
 	 * @param attributName
 	 *            der Name des Attributs, unterhalb dem ein Item
-	 *            <code>Güte</code> im übergebenen DAV-Datum steht. Also z.B.
-	 *            <code>qKfz</code> für ein DAV-Kurzzeitdatum
+	 *            <code>GÃ¼te</code> im Ã¼bergebenen DAV-Datum steht. Also z.B.
+	 *            <code>qKfz</code> fÃ¼r ein DAV-Kurzzeitdatum
 	 */
 	public GWert(final Data davDatum, final String attributName) {
 		this(davDatum, attributName,
@@ -95,8 +95,8 @@ public class GWert {
 	 *            ein DAV-Datum (<code>!= null</code>)
 	 * @param attributName
 	 *            der Name des Attributs, unterhalb dem ein Item
-	 *            <code>Güte</code> im übergebenen DAV-Datum steht. Also z.B.
-	 *            <code>qKfz</code> für ein DAV-Kurzzeitdatum
+	 *            <code>GÃ¼te</code> im Ã¼bergebenen DAV-Datum steht. Also z.B.
+	 *            <code>qKfz</code> fÃ¼r ein DAV-Kurzzeitdatum
 	 * @param wertIsNichtErmittelbar
 	 *            gibt an, ob der Wert, mit dem diese Guete assoziiert ist im
 	 *            Zustand <code>nicht ermittelbar</code> steht
@@ -106,7 +106,7 @@ public class GWert {
 			throw new NullPointerException("Uebergebenes Datum ist <<null>>");
 		}
 
-		final Data davGueteDatum = davDatum.getItem(attributName).getItem("Güte");
+		final Data davGueteDatum = davDatum.getItem(attributName).getItem("GÃ¼te");
 
 		this.gueteAusDavWert = GanzZahl.getGueteIndex();
 		this.gueteAusDavWert.setWert(davGueteDatum.getUnscaledValue("Index").longValue());
@@ -121,7 +121,7 @@ public class GWert {
 	}
 
 	/**
-	 * Konstruktor für die Eingabe von Ganzzahlen.
+	 * Konstruktor fÃ¼r die Eingabe von Ganzzahlen.
 	 *
 	 * @param gueteWert
 	 *            ein skalierter Guetewert
@@ -161,7 +161,7 @@ public class GWert {
 	}
 
 	/**
-	 * Interner Konstruktor (nur für Zwischenergebnisse).
+	 * Interner Konstruktor (nur fÃ¼r Zwischenergebnisse).
 	 *
 	 * @param index
 	 *            der Guete-Index
@@ -315,7 +315,7 @@ public class GWert {
 	 *            ein DAV-Datum, dass den Guete-Index und das Guete-Verfahren in
 	 *            der Form <code>index = </code>DAV-Datum<code>.Index</code>
 	 *            bzw. <code>verfahren =
-	 * </code>DAV-Datum<code>.Verfahren</code> enthält (dabei muss
+	 * </code>DAV-Datum<code>.Verfahren</code> enthÃ¤lt (dabei muss
 	 *            <code>zielDatum != null</code> sein)
 	 */
 	public final void exportiere(final Data zielDatum) {
@@ -330,11 +330,11 @@ public class GWert {
 	 *            ein DAV-Datum (<code>!= null</code>)
 	 * @param attributName
 	 *            der Name des Attributs, unterhalb dem ein Item
-	 *            <code>Güte</code> im übergebenen DAV-Datum steht. Also z.B.
-	 *            <code>qKfz</code> für ein DAV-Kurzzeitdatum
+	 *            <code>GÃ¼te</code> im Ã¼bergebenen DAV-Datum steht. Also z.B.
+	 *            <code>qKfz</code> fÃ¼r ein DAV-Kurzzeitdatum
 	 */
 	public final void exportiere(final Data zielDatum, final String attributName) {
-		this.exportiere(zielDatum.getItem(attributName).getItem("Güte"));
+		this.exportiere(zielDatum.getItem(attributName).getItem("GÃ¼te"));
 	}
 
 	/**

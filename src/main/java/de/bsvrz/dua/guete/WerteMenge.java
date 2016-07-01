@@ -1,5 +1,5 @@
 /*
- * Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung
+ * Segment 4 DatenÃ¼bernahme und Aufbereitung (DUA), SWE 4.11 GÃ¼teberechnung
  * Copyright (C) 2007-2015 BitCtrl Systems GmbH
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -18,7 +18,7 @@
  *
  * Contact Information:<br>
  * BitCtrl Systems GmbH<br>
- * Weißenfelser Straße 67<br>
+ * WeiÃŸenfelser StraÃŸe 67<br>
  * 04229 Leipzig<br>
  * Phone: +49 341-490670<br>
  * mailto: info@bitctrl.de
@@ -30,7 +30,7 @@ import java.util.TreeSet;
 
 /**
  * Stellt eine Menge von Guete-Indizes zusammen mit ihrem Berechnungs-Verfahren
- * (konsistent) zur Verfügung.
+ * (konsistent) zur VerfÃ¼gung.
  *
  * @author BitCtrl Systems GmbH, Thierfelder
  */
@@ -58,7 +58,7 @@ public class WerteMenge {
 
 	/**
 	 * Zeigt an, ob einer der Indizes, innerhalb dieser Menge auf einem der
-	 * Zustände <code>fehlerhaft</code>, <code>nicht ermittelbar</code> oder
+	 * ZustÃ¤nde <code>fehlerhaft</code>, <code>nicht ermittelbar</code> oder
 	 * <code>nicht ermittelbar/fehlerhaft</code> steht.
 	 */
 	private boolean verrechenbar = true;
@@ -103,11 +103,11 @@ public class WerteMenge {
 
 	/**
 	 * Erfragt, ob einer der Indizes, innerhalb dieser Menge auf einem der
-	 * Zustände <code>fehlerhaft</code>, <code>nicht ermittelbar</code> oder
+	 * ZustÃ¤nde <code>fehlerhaft</code>, <code>nicht ermittelbar</code> oder
 	 * <code>nicht ermittelbar/fehlerhaft</code> steht.
 	 *
 	 * @return ob einer der Indizes, innerhalb dieser Menge auf einem der
-	 *         Zustände <code>fehlerhaft</code>, <code>nicht ermittelbar</code>
+	 *         ZustÃ¤nde <code>fehlerhaft</code>, <code>nicht ermittelbar</code>
 	 *         oder <code>nicht ermittelbar/fehlerhaft</code> steht
 	 */
 	protected final boolean isVerrechenbar() {

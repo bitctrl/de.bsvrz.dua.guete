@@ -4,7 +4,7 @@
 
 	<groupId>de.bsvrz.dua</groupId>
 	<artifactId>de.bsvrz.dua.guete</artifactId>
-	<version>1.3.0-SNAPSHOT</version>
+	<version>1.4.0-SNAPSHOT</version>
 
 
 	<name>Bibliothek Gueteberechnung (SWE 4.11)</name>

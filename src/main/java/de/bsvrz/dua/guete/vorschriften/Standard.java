@@ -1,5 +1,5 @@
 /*
- * Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung
+ * Segment 4 DatenÃ¼bernahme und Aufbereitung (DUA), SWE 4.11 GÃ¼teberechnung
  * Copyright (C) 2007-2015 BitCtrl Systems GmbH
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -18,7 +18,7 @@
  *
  * Contact Information:<br>
  * BitCtrl Systems GmbH<br>
- * Weißenfelser Straße 67<br>
+ * WeiÃŸenfelser StraÃŸe 67<br>
  * 04229 Leipzig<br>
  * Phone: +49 341-490670<br>
  * mailto: info@bitctrl.de
@@ -27,7 +27,7 @@
 package de.bsvrz.dua.guete.vorschriften;
 
 /**
- * Implementierung des Verfahrens der Standard-Güteberechnung.
+ * Implementierung des Verfahrens der Standard-GÃ¼teberechnung.
  *
  * @author BitCtrl Systems GmbH, Thierfelder
  */
@@ -99,7 +99,7 @@ public class Standard implements IGuete {
 	}
 
 	/**
-	 * Die einzelnen Werte werden hier multiplikativ miteinander verknüpft.
+	 * Die einzelnen Werte werden hier multiplikativ miteinander verknÃ¼pft.
 	 */
 	@Override
 	public final double p(final double... quellGueten) {
@@ -115,7 +115,7 @@ public class Standard implements IGuete {
 	}
 
 	/**
-	 * Die einzelnen Werte werden hier multiplikativ miteinander verknüpft.
+	 * Die einzelnen Werte werden hier multiplikativ miteinander verknÃ¼pft.
 	 */
 	@Override
 	public final double q(final double... quellGueten) {

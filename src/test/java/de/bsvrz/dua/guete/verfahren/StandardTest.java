@@ -1,5 +1,5 @@
 /*
- * Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung
+ * Segment 4 DatenÃ¼bernahme und Aufbereitung (DUA), SWE 4.11 GÃ¼teberechnung
  * Copyright (C) 2007-2015 BitCtrl Systems GmbH
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -18,7 +18,7 @@
  *
  * Contact Information:<br>
  * BitCtrl Systems GmbH<br>
- * Weißenfelser Straße 67<br>
+ * WeiÃŸenfelser StraÃŸe 67<br>
  * 04229 Leipzig<br>
  * Phone: +49 341-490670<br>
  * mailto: info@bitctrl.de
@@ -41,12 +41,12 @@ import de.bsvrz.dua.guete.vorschriften.Standard;
 public class StandardTest {
 
 	/**
-	 * eine statische Instanz der Standard-Güteberechnung.
+	 * eine statische Instanz der Standard-GÃ¼teberechnung.
 	 */
 	private IGuete g;
 
 	/**
-	 * Lädt eine statische Instanz der Standard-Güteberechnung.
+	 * LÃ¤dt eine statische Instanz der Standard-GÃ¼teberechnung.
 	 */
 	@Before
 	public void setUp() {
@@ -55,7 +55,7 @@ public class StandardTest {
 
 	/**
 	 * Testet die Methoden <code>q(..)</code> und <code>p(..)</code>, die in der
-	 * Standard-Güteberechnung identisch implementiert sind.
+	 * Standard-GÃ¼teberechnung identisch implementiert sind.
 	 */
 	@Test
 	public void testPundQ() {
@@ -88,7 +88,7 @@ public class StandardTest {
 
 	/**
 	 * Testet die Methoden <code>s(..)</code> und <code>d(..)</code>, die in der
-	 * Standard-Güteberechnung identisch implementiert sind.
+	 * Standard-GÃ¼teberechnung identisch implementiert sind.
 	 */
 	@Test
 	public void testSundD() {
@@ -112,7 +112,7 @@ public class StandardTest {
 	}
 
 	/**
-	 * Testet die Methoden <code>e(..)</code> der Standard-Güteberechnung.
+	 * Testet die Methoden <code>e(..)</code> der Standard-GÃ¼teberechnung.
 	 */
 	@Test
 	public void testE() {
@@ -163,7 +163,7 @@ public class StandardTest {
 
 	/**
 	 * Testet die Methoden <code>sw(..)</code> und <code>dw(..)</code>, die in
-	 * der Standard-Güteberechnung identisch implementiert sind.
+	 * der Standard-GÃ¼teberechnung identisch implementiert sind.
 	 */
 	@Test
 	public void testSWundDW() {

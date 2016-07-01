@@ -1,5 +1,5 @@
 /*
- * Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung
+ * Segment 4 DatenÃ¼bernahme und Aufbereitung (DUA), SWE 4.11 GÃ¼teberechnung
  * Copyright (C) 2007-2015 BitCtrl Systems GmbH
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -18,7 +18,7 @@
  *
  * Contact Information:<br>
  * BitCtrl Systems GmbH<br>
- * Weißenfelser Straße 67<br>
+ * WeiÃŸenfelser StraÃŸe 67<br>
  * 04229 Leipzig<br>
  * Phone: +49 341-490670<br>
  * mailto: info@bitctrl.de
@@ -36,7 +36,7 @@ import de.bsvrz.sys.funclib.bitctrl.dua.GanzZahl;
 import de.bsvrz.sys.funclib.bitctrl.dua.MesswertZustand;
 
 /**
- * Repräsentiert den DAV-Enumerationstypen <code>att.güteVerfahren</code>.
+ * ReprÃ¤sentiert den DAV-Enumerationstypen <code>att.gÃ¼teVerfahren</code>.
  *
  * @author BitCtrl Systems GmbH, Thierfelder
  */
@@ -57,7 +57,7 @@ public final class GueteVerfahren extends AbstractDavZustand {
 	}
 
 	/**
-	 * Standardverfahren gemäß Anwenderforderungen.
+	 * Standardverfahren gemÃ¤ÃŸ Anwenderforderungen.
 	 */
 	public static final GueteVerfahren STANDARD = new GueteVerfahren("Standard", 0, new Standard());
 
@@ -69,7 +69,7 @@ public final class GueteVerfahren extends AbstractDavZustand {
 			GueteVerfahren.FEHLERHAFT_BZW_NICHT_ERMITTELBAR, GueteVerfahren.STANDARD, false);
 
 	/**
-	 * Standardwert für die Guete.
+	 * Standardwert fÃ¼r die Guete.
 	 */
 	private static final double STANDARD_GUETE = 1.0;
 
@@ -104,11 +104,11 @@ public final class GueteVerfahren extends AbstractDavZustand {
 	}
 
 	/**
-	 * Erfragt den Wert dieses DAV-Enumerationstypen mit dem übergebenen Code.
+	 * Erfragt den Wert dieses DAV-Enumerationstypen mit dem Ã¼bergebenen Code.
 	 *
 	 * @param code
 	 *            der Code des Enumerations-Wertes
-	 * @return den Wert dieses DAV-Enumerationstypen mit dem übergebenen Code.
+	 * @return den Wert dieses DAV-Enumerationstypen mit dem Ã¼bergebenen Code.
 	 */
 	public static GueteVerfahren getZustand(final int code) {
 		return GueteVerfahren.werteBereich.get(code);
@@ -134,16 +134,16 @@ public final class GueteVerfahren extends AbstractDavZustand {
 	}
 
 	/**
-	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
-	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen
-	 * diese Güte-Indizes gehören mit dem Operator "<code>*</code>" verknüpft
+	 * Diese Methode berechnet aus allen GÃ¼te-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-GÃ¼te unter der Vorraussetzung, dass alle Werte, zu denen
+	 * diese GÃ¼te-Indizes gehÃ¶ren mit dem Operator "<code>*</code>" verknÃ¼pft
 	 * worden sind.
 	 *
 	 * @param quellGueten
-	 *            die Güte-Datensätze aus denen die Gesamtgüte berechnet werden
+	 *            die GÃ¼te-DatensÃ¤tze aus denen die GesamtgÃ¼te berechnet werden
 	 *            soll
-	 * @return die Gesamt-Güte, 1.0 für den Fall, dass eine leere Menge
-	 *         übergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>,
+	 * @return die Gesamt-GÃ¼te, 1.0 fÃ¼r den Fall, dass eine leere Menge
+	 *         Ã¼bergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>,
 	 *         wenn der Wert sonst nicht errechnet werden konnte
 	 * @throws GueteException
 	 *             wenn die Verfahren zur Berechnung der Guete innerhalb der
@@ -166,16 +166,16 @@ public final class GueteVerfahren extends AbstractDavZustand {
 	}
 
 	/**
-	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
-	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen
-	 * diese Güte-Indizes gehören mit dem Operator "<code>/</code>" verknüpft
+	 * Diese Methode berechnet aus allen GÃ¼te-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-GÃ¼te unter der Vorraussetzung, dass alle Werte, zu denen
+	 * diese GÃ¼te-Indizes gehÃ¶ren mit dem Operator "<code>/</code>" verknÃ¼pft
 	 * worden sind.
 	 *
 	 * @param quellGueten
-	 *            die Güte-Datensätze aus denen die Gesamtgüte berechnet werden
+	 *            die GÃ¼te-DatensÃ¤tze aus denen die GesamtgÃ¼te berechnet werden
 	 *            soll
-	 * @return die Gesamt-Güte, 1.0 für den Fall, dass eine leere Menge
-	 *         übergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>,
+	 * @return die Gesamt-GÃ¼te, 1.0 fÃ¼r den Fall, dass eine leere Menge
+	 *         Ã¼bergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>,
 	 *         wenn der Wert sonst nicht errechnet werden konnte
 	 * @throws GueteException
 	 *             wenn die Verfahren zur Berechnung der Guete innerhalb der
@@ -198,16 +198,16 @@ public final class GueteVerfahren extends AbstractDavZustand {
 	}
 
 	/**
-	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
-	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen
-	 * diese Güte-Indizes gehören mit dem Operator "<code>+</code>" verknüpft
+	 * Diese Methode berechnet aus allen GÃ¼te-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-GÃ¼te unter der Vorraussetzung, dass alle Werte, zu denen
+	 * diese GÃ¼te-Indizes gehÃ¶ren mit dem Operator "<code>+</code>" verknÃ¼pft
 	 * worden sind.
 	 *
 	 * @param quellGueten
-	 *            die Güte-Datensätze aus denen die Gesamtgüte berechnet werden
+	 *            die GÃ¼te-DatensÃ¤tze aus denen die GesamtgÃ¼te berechnet werden
 	 *            soll
-	 * @return die Gesamt-Güte, 1.0 für den Fall, dass eine leere Menge
-	 *         übergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>,
+	 * @return die Gesamt-GÃ¼te, 1.0 fÃ¼r den Fall, dass eine leere Menge
+	 *         Ã¼bergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>,
 	 *         wenn der Wert sonst nicht errechnet werden konnte
 	 * @throws GueteException
 	 *             wenn die Verfahren zur Berechnung der Guete innerhalb der
@@ -236,16 +236,16 @@ public final class GueteVerfahren extends AbstractDavZustand {
 	}
 
 	/**
-	 * Diese Methode berechnet aus allen Güte-Indizes aus <b>quellGueten</b>
-	 * eine Gesamt-Güte unter der Vorraussetzung, dass alle Werte, zu denen
-	 * diese Güte-Indizes gehören mit dem Operator "<code>-</code>" verknüpft
+	 * Diese Methode berechnet aus allen GÃ¼te-Indizes aus <b>quellGueten</b>
+	 * eine Gesamt-GÃ¼te unter der Vorraussetzung, dass alle Werte, zu denen
+	 * diese GÃ¼te-Indizes gehÃ¶ren mit dem Operator "<code>-</code>" verknÃ¼pft
 	 * worden sind.
 	 *
 	 * @param quellGueten
-	 *            die Güte-Datensätze aus denen die Gesamtgüte berechnet werden
+	 *            die GÃ¼te-DatensÃ¤tze aus denen die GesamtgÃ¼te berechnet werden
 	 *            soll
-	 * @return die Gesamt-Güte, 1.0 für den Fall, dass eine leere Menge
-	 *         übergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>,
+	 * @return die Gesamt-GÃ¼te, 1.0 fÃ¼r den Fall, dass eine leere Menge
+	 *         Ã¼bergeben wurde, oder <code>nicht ermittelbar/fehlerhaft</code>,
 	 *         wenn der Wert sonst nicht errechnet werden konnte
 	 * @throws GueteException
 	 *             wenn die Verfahren zur Berechnung der Guete innerhalb der
@@ -274,16 +274,16 @@ public final class GueteVerfahren extends AbstractDavZustand {
 	}
 
 	/**
-	 * Diese Methode berechnet aus dem Güte-Index <b>quellGuete</b> und dem
-	 * Exponenten <b>exponent</b> eine Gesamt-Güte unter der Vorraussetzung,
-	 * dass der Wert, zu dem dieser Güte-Index gehört mit dem Exponenten
+	 * Diese Methode berechnet aus dem GÃ¼te-Index <b>quellGuete</b> und dem
+	 * Exponenten <b>exponent</b> eine Gesamt-GÃ¼te unter der Vorraussetzung,
+	 * dass der Wert, zu dem dieser GÃ¼te-Index gehÃ¶rt mit dem Exponenten
 	 * <b>exponent</b> potenziert worden ist.
 	 *
 	 * @param quellGuete
-	 *            der Güte-Datensatz
+	 *            der GÃ¼te-Datensatz
 	 * @param exponent
 	 *            der Exponent
-	 * @return die Gesamt-Güte oder <code>nicht ermittelbar/fehlerhaft</code>,
+	 * @return die Gesamt-GÃ¼te oder <code>nicht ermittelbar/fehlerhaft</code>,
 	 *         wenn der Wert sonst nicht errechnet werden konnte
 	 * @throws GueteException
 	 *             falls ungueltige Werte uebergeben worden sind

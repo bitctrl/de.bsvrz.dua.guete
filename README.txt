@@ -1,21 +1,25 @@
 *******************************************************************************
-*  Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung   *
+*  Segment 4 DatenÃ¼bernahme und Aufbereitung (DUA), SWE 4.11 GÃ¼teberechnung   *
 *******************************************************************************
 
 Version: ${version}
 
-Übersicht
+Ãœbersicht
 =========
 
-Diese SW-Einheit stellt über die Schnittstelle zu einer Funktionsbibliothek 
-eine Menge von Funktionen zur Berechnung eines Güte-Index aus mehreren Güte-Indizes
-zur Verfügung. Die Bibliothek wird in Form einer JAR-Datei (de.bsvrz.dua.guete.jar)
-bereitgestellt und kann über die CLASSPATH-Variable der Java-Maschine in eine Applikation
+Diese SW-Einheit stellt Ã¼ber die Schnittstelle zu einer Funktionsbibliothek 
+eine Menge von Funktionen zur Berechnung eines GÃ¼te-Index aus mehreren GÃ¼te-Indizes
+zur VerfÃ¼gung. Die Bibliothek wird in Form einer JAR-Datei (de.bsvrz.dua.guete.jar)
+bereitgestellt und kann Ã¼ber die CLASSPATH-Variable der Java-Maschine in eine Applikation
 eingebunden werden. 
 
 
 Versionsgeschichte
 ==================
+
+1.4.0
+=====
+- Umstellung auf Java 8 und UTF-8
 
 1.3.0
 - Umstellung auf Funclib-Bitctrl-Dua
@@ -48,7 +52,7 @@ Versionsgeschichte
 Disclaimer
 ==========
 
-Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung
+Segment 4 DatenÃ¼bernahme und Aufbereitung (DUA), SWE 4.11 GÃ¼teberechnung
 Copyright (C) 2007 BitCtrl Systems GmbH 
 
 This program is free software; you can redistribute it and/or modify it under
@@ -70,7 +74,7 @@ Kontakt
 =======
 
 BitCtrl Systems GmbH
-Weißenfelser Straße 67
+WeiÃŸenfelser StraÃŸe 67
 04229 Leipzig
 Phone: +49 341-490670
 mailto: info@bitctrl.de
