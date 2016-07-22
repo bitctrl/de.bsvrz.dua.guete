@@ -344,7 +344,12 @@
 								de.bsvrz.pua,
 								de.bsvrz.sys,
 								de.bsvrz.vew,
-								de.bsvrz.pat</excludeGroupIds>
+								de.bsvrz.pat,
+								com.bitctrl,
+								commons-codec,
+								junit,
+								org.hamcrest
+							</excludeGroupIds>
 						</configuration>
 					</execution>
 					<execution>
@@ -367,7 +372,11 @@
 								de.bsvrz.pua,
 								de.bsvrz.sys,
 								de.bsvrz.vew,
-								de.bsvrz.pat</excludeGroupIds>
+								de.bsvrz.pat,
+								com.bitctrl,
+								commons-codec,
+								junit,
+								org.hamcrest</excludeGroupIds>
 						</configuration>
 					</execution>
 				</executions>
