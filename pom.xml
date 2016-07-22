@@ -24,7 +24,7 @@
 		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
 		<kernsoftware.version>3.8.0</kernsoftware.version>
 		<distributionspaket.status>FREI</distributionspaket.status>
-		<distributionspaket.standDatum>2016-07-20</distributionspaket.standDatum>
+		<distributionspaket.standDatum>2016-05-31</distributionspaket.standDatum>
 		<distributionspaket.lizenz>LGPLv3.0</distributionspaket.lizenz>
 	</properties>
 
@@ -43,11 +43,11 @@
 			<organizationUrl>http://www.bitctrl.de</organizationUrl>
 		</developer>
 		<developer>
-            <id>kappich</id>
+			<id>kappich</id>
             <email>info@kappich.de</email>
             <organization>Kappich Systemberatung</organization>
             <organizationUrl>http://www.kappich.de</organizationUrl>
-        </developer>	
+		</developer>
    	</developers>
 
 	<scm>
@@ -309,7 +309,7 @@
 				<configuration>
 					<finalName>SWE_${project.artifactId}_${distributionspaket.status}_V${project.version}_D${distributionspaket.standDatum}</finalName>
 					<descriptors>
-						<descriptor>src/assembly/distributionspaket.xml</descriptor>
+						<descriptor>src/assembly/distributionspaket_ohne_tests.xml</descriptor>
 					</descriptors>
 				</configuration>
 				<executions>
@@ -344,7 +344,12 @@
 								de.bsvrz.pua,
 								de.bsvrz.sys,
 								de.bsvrz.vew,
-								de.bsvrz.pat</excludeGroupIds>
+								de.bsvrz.pat,
+								com.bitctrl,
+								commons-codec,
+								junit,
+								org.hamcrest
+							</excludeGroupIds>
 						</configuration>
 					</execution>
 					<execution>
@@ -367,7 +372,11 @@
 								de.bsvrz.pua,
 								de.bsvrz.sys,
 								de.bsvrz.vew,
-								de.bsvrz.pat</excludeGroupIds>
+								de.bsvrz.pat,
+								com.bitctrl,
+								commons-codec,
+								junit,
+								org.hamcrest</excludeGroupIds>
 						</configuration>
 					</execution>
 				</executions>
@@ -394,6 +403,7 @@
 				<artifactId>findbugs-maven-plugin</artifactId>
 				<version>3.0.3</version>
 				<configuration>
+					<excludeFilterFile>src/main/config/findbugs-exclude.xml</excludeFilterFile>
 					<threshold>High</threshold>
 					<includeTests>true</includeTests>
 				</configuration>

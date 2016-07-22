@@ -1,11 +1,12 @@
-*******************************************************************************
-*  Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung   *
-*******************************************************************************
+[![Build Status](https://travis-ci.org/bitctrl/de.bsvrz.dua.guete.svg?branch=develop)](https://travis-ci.org/bitctrl/de.bsvrz.dua.guete)
+[![Build Status](https://api.bintray.com/packages/bitctrl/maven/de.bsvrz.dua.guete/images/download.svg)](https://bintray.com/bitctrl/maven/de.bsvrz.dua.guete)
+
+
+# Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung
 
 Version: ${version}
 
-Übersicht
-=========
+## Übersicht
 
 Diese SW-Einheit stellt über die Schnittstelle zu einer Funktionsbibliothek 
 eine Menge von Funktionen zur Berechnung eines Güte-Index aus mehreren Güte-Indizes
@@ -14,11 +15,23 @@ bereitgestellt und kann über die CLASSPATH-Variable der Java-Maschine in eine A
 eingebunden werden. 
 
 
-Versionsgeschichte
-==================
+## Versionsgeschichte
+
+### 2.0.0 
+
+Releasedatum 31.5.2016
+
+#### Neue Abhängigkeiten
+
+Die SWE benötigt nun das Distributionspaket de.bsvrz.sys.funclib.bitctrl.dua in
+Mindestversion 1.5.0 und de.bsvrz.sys.funclib.bitctrl in Mindestversion 1.4.0.
+
+#### Fehlerkorrekturen
+
+Folgende Fehler gegenüber vorhergehenden Versionen wurden korrigiert:
+- Mögliche NullPointerException beim Kopieren von Gütewerten korrigiert.
 
 1.4.0
-=====
 - Umstellung auf Java 8 und UTF-8
 
 1.3.0
@@ -28,29 +41,19 @@ Versionsgeschichte
 - Umstellung auf Maven-Build
 
 1.1.7
-
   - Problem mit NullPointerException bei Zwischenergebnissen 
     der Gueteberechnung behoben
-
-1.1.6
-
-  - 
    
 1.1.5
-
   - Neuer Konstruktor fuer Guetewerte hinzugefuegt	
 
 1.1.0
-
   - Umpacketierung
 
 1.0.0
-
   - Erste Auslieferung
 
-  
-Disclaimer
-==========
+## Disclaimer
 
 Segment 4 Datenübernahme und Aufbereitung (DUA), SWE 4.11 Güteberechnung
 Copyright (C) 2007 BitCtrl Systems GmbH 
@@ -70,8 +73,7 @@ this program; if not, write to the Free Software Foundation, Inc., 51
 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 
-Kontakt
-=======
+# Kontakt
 
 BitCtrl Systems GmbH
 Weißenfelser Straße 67

@@ -55,7 +55,7 @@ public class GWert {
 	/**
 	 * Das Berechnungsverfahren zur Behandlung dieser Guete.
 	 */
-	private GueteVerfahren verfahren = null;
+	private final GueteVerfahren verfahren;
 
 	/**
 	 * Der Guete-Index.
