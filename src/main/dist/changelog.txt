@@ -1,0 +1,75 @@
+****************************************************************************
+* Versionsgeschichte                                                       *
+*                                                                          *
+* Segment 4 Datenübernahme und Aufbereitung (DUA)                          *
+* SWE 4.11 Güteberechnung                                                  *
+*                                                                          *
+****************************************************************************
+
+Aktuelle Version: ${version}
+****************************************************************************
+
+2.0.1 (22.07.2016)
+  - ReleaseNotes durch txt-Datei ersetzt
+
+****************************************************************************
+
+2.0.0 (31.05.2016)
+
+Neue Abhängigkeiten
+===================
+Die SWE benötigt nun das Distributionspaket de.bsvrz.sys.funclib.bitctrl.dua in
+Mindestversion 1.5.0 und de.bsvrz.sys.funclib.bitctrl in Mindestversion 1.4.0.
+
+Fehlerkorrekturen
+=================
+Folgende Fehler gegenüber vorhergehenden Versionen wurden korrigiert:
+- Mögliche NullPointerException beim Kopieren von Gütewerten korrigiert.
+
+****************************************************************************
+
+1.4.0
+- Umstellung auf Java 8 und UTF-8
+
+****************************************************************************
+
+1.3.0
+- Umstellung auf Funclib-Bitctrl-Dua
+
+****************************************************************************
+
+1.2.0
+- Umstellung auf Maven-Build
+
+****************************************************************************
+
+1.1.7
+  - Problem mit NullPointerException bei Zwischenergebnissen 
+    der Gueteberechnung behoben
+
+****************************************************************************
+   
+1.1.5
+  - Neuer Konstruktor fuer Guetewerte hinzugefuegt	
+
+****************************************************************************
+
+1.1.0
+  - Umpacketierung
+
+****************************************************************************
+
+1.0.0
+  - Erste Auslieferung
+
+****************************************************************************
+
+Kontakt
+=======
+
+BitCtrl Systems GmbH
+Weißenfelser Straße 67
+04229 Leipzig
+Phone: +49 341-490670
+mailto: info@bitctrl.de
+

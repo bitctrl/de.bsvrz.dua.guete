@@ -5,7 +5,7 @@
 
 	<groupId>de.bsvrz.dua</groupId>
 	<artifactId>de.bsvrz.dua.guete</artifactId>
-	<version>2.0.0</version>
+	<version>2.0.1</version>
 
 	<name>Bibliothek Gueteberechnung (SWE 4.11)</name>
 
@@ -24,8 +24,9 @@
 		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
 		<kernsoftware.version>3.8.0</kernsoftware.version>
 		<distributionspaket.status>FREI</distributionspaket.status>
-		<distributionspaket.standDatum>2016-05-31</distributionspaket.standDatum>
+		<distributionspaket.standDatum>2016-07-22</distributionspaket.standDatum>
 		<distributionspaket.lizenz>LGPLv3.0</distributionspaket.lizenz>
+		<additionalparam>-Xdoclint:none</additionalparam>
 	</properties>
 
 	<licenses>
@@ -106,6 +107,9 @@
 		</profile>
 		<profile>
 			<id>bintray</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<repositories>
 				<repository>
 					<snapshots>
@@ -169,19 +173,8 @@
 		</dependency>
 		<dependency>
 			<groupId>de.bsvrz.sys</groupId>
-			<artifactId>de.bsvrz.sys.funclib.bitctrl</artifactId>
-			<version>1.5.0</version>
-		</dependency>
-		<dependency>
-			<groupId>de.bsvrz.sys</groupId>
 			<artifactId>de.bsvrz.sys.funclib.bitctrl.dua</artifactId>
 			<version>1.6.0</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
