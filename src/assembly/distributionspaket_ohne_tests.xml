@@ -12,6 +12,7 @@
     </componentDescriptors>
     <fileSets>
         <fileSet>
+        	<filtered>true</filtered>
             <directory>${project.basedir}/src/main/dist</directory>
             <outputDirectory>.</outputDirectory>
         </fileSet>
