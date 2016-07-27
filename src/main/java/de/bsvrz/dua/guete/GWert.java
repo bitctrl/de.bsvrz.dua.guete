@@ -55,7 +55,7 @@ public class GWert {
 	/**
 	 * Das Berechnungsverfahren zur Behandlung dieser Guete.
 	 */
-	private final GueteVerfahren verfahren;
+	private GueteVerfahren verfahren = null;
 
 	/**
 	 * Der Guete-Index.
@@ -351,7 +351,7 @@ public class GWert {
 	 * Ein Guete-Wert gilt hier als verrechenbar, wenn er entweder ein
 	 * Zwischenergebnis ist (also nicht mit den Standardkonstruktoren
 	 * instanziiert wurde) oder wenn er nicht auf einem Zustand (Wert
-	 * <code>&lt; 0</code>) steht.
+	 * <code>< 0</code>) steht.
 	 * 
 	 * @return ob dieser Guetewert verrechenbar ist
 	 */
