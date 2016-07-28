@@ -41,8 +41,6 @@ import java.util.Map;
  * Repräsentiert den DAV-Enumerationstypen <code>att.güteVerfahren</code>.
  * 
  * @author BitCtrl Systems GmbH, Thierfelder
- * 
- * @version $Id$
  */
 public final class GueteVerfahren extends AbstractDavZustand {
 

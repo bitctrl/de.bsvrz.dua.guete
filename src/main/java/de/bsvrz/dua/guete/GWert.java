@@ -28,6 +28,8 @@
 
 package de.bsvrz.dua.guete;
 
+import java.util.Objects;
+
 import de.bsvrz.dav.daf.main.Data;
 import de.bsvrz.sys.funclib.bitctrl.dua.DUAKonstanten;
 import de.bsvrz.sys.funclib.bitctrl.dua.GanzZahl;
@@ -37,8 +39,6 @@ import de.bsvrz.sys.funclib.bitctrl.dua.MesswertZustand;
  * Repräsentiert einen Guetewert inklusive Index und Verfahren.
  * 
  * @author BitCtrl Systems GmbH, Thierfelder
- * 
- * @version $Id$
  */
 public class GWert {
 
@@ -55,12 +55,12 @@ public class GWert {
 	/**
 	 * Das Berechnungsverfahren zur Behandlung dieser Guete.
 	 */
-	private GueteVerfahren verfahren = null;
+	private final GueteVerfahren verfahren;
 
 	/**
 	 * Der Guete-Index.
 	 */
-	private double index = Double.NaN;
+	private final double index;
 
 	/**
 	 * Die Gewichtung des Guetewertes.
@@ -120,6 +120,8 @@ public class GWert {
 				.getUnscaledValue("Index").longValue()); //$NON-NLS-1$
 		if (this.isVerrechenbar()) {
 			this.index = this.gueteAusDavWert.getSkaliertenWert();
+		} else {
+			this.index = Double.NaN;
 		}
 		this.verfahren = GueteVerfahren.getZustand(davGueteDatum
 				.getUnscaledValue("Verfahren").intValue()); //$NON-NLS-1$
@@ -150,6 +152,8 @@ public class GWert {
 					this.index = this.gueteAusDavWert.getSkaliertenWert();	
 				}
 			}
+		} else {
+			index = Double.NaN;
 		}
 	}
 
@@ -351,7 +355,7 @@ public class GWert {
 	 * Ein Guete-Wert gilt hier als verrechenbar, wenn er entweder ein
 	 * Zwischenergebnis ist (also nicht mit den Standardkonstruktoren
 	 * instanziiert wurde) oder wenn er nicht auf einem Zustand (Wert
-	 * <code>< 0</code>) steht.
+	 * <code>&lt; 0</code>) steht.
 	 * 
 	 * @return ob dieser Guetewert verrechenbar ist
 	 */
@@ -360,9 +364,6 @@ public class GWert {
 				|| !this.gueteAusDavWert.isZustand();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		boolean ergebnis = false;
@@ -375,10 +376,12 @@ public class GWert {
 
 		return ergebnis;
 	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(index, verfahren);
+	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String toString() {
 		return "Index: " + this.index + "\nVerfahren: " + this.verfahren; //$NON-NLS-1$ //$NON-NLS-2$
