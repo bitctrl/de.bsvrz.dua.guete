@@ -32,8 +32,6 @@ package de.bsvrz.dua.guete.vorschriften;
  * Implementierung des Verfahrens der Standard-Güteberechnung.
  * 
  * @author BitCtrl Systems GmbH, Thierfelder
- * 
- * @version $Id$
  */
 public class Standard implements IGuete {
 

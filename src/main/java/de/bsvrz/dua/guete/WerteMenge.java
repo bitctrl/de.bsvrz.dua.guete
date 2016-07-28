@@ -35,8 +35,6 @@ import java.util.TreeSet;
  * (konsistent) zur Verfügung.
  * 
  * @author BitCtrl Systems GmbH, Thierfelder
- * 
- * @version $Id$
  */
 public class WerteMenge {
 
