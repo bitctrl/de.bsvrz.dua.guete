@@ -32,8 +32,6 @@ package de.bsvrz.dua.guete;
  * Indiziert, dass eine Gueteberechnung nicht durchgefuehrt werden konnte.
  * 
  * @author BitCtrl Systems GmbH, Thierfelder
- * 
- * @version $Id$
  */
 public class GueteException extends Exception {
 
