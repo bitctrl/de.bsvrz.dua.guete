@@ -26,7 +26,6 @@
 		<distributionspaket.status>FREI</distributionspaket.status>
 		<distributionspaket.standDatum>${maven.build.timestamp}</distributionspaket.standDatum>
 		<distributionspaket.lizenz>LGPLv3.0</distributionspaket.lizenz>
-<!-- 		<additionalparam>-Xdoclint:none</additionalparam> -->
 	</properties>
 
 	<licenses>
@@ -396,7 +395,6 @@
 				<artifactId>findbugs-maven-plugin</artifactId>
 				<version>3.0.3</version>
 				<configuration>
-					<excludeFilterFile>src/main/config/findbugs-exclude.xml</excludeFilterFile>
 					<threshold>High</threshold>
 					<includeTests>true</includeTests>
 				</configuration>
